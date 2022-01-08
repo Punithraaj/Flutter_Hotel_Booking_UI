@@ -100,7 +100,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 const EdgeInsets.only(left: 48, right: 48, bottom: 8, top: 32),
             buttonText: AppLocalizations(context).of("login"),
             onTap: () {
-              Scaffold();
+              NavigationServices(context).gotoLoginScreen();
             },
           ),
           CommonButton(
@@ -110,7 +110,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
             backgroundColor: AppTheme.backgroundColor,
             textColor: AppTheme.primaryTextColor,
             onTap: () {
-              Scaffold();
+              NavigationServices(context).gotoSignScreen();
             },
           ),
           SizedBox(

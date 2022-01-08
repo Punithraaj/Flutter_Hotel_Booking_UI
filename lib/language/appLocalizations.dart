@@ -16,8 +16,8 @@ class AppLocalizations {
     final List<Map<String, String>> allTexts = [];
 
     List<dynamic> jsonData = json.decode(
-      await DefaultAssetBundle.of(context).loadString(
-          'packages/flutter_hotel_booking_ui/language/lang/language_text.json'),
+      await DefaultAssetBundle.of(context)
+          .loadString('lib/language/lang/language_text.json'),
     );
 
     jsonData.forEach((value) {
