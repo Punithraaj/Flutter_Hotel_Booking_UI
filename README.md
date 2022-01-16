@@ -23,7 +23,7 @@ In this tutorial, you will learn how to create a Splash Screen and Introduction 
 Now it contains all the screen, thanks for your love and support 🙏 
 
 ## Photos
-![Preview](/Ui1.png)
+![Preview](/U1.png)
 ![Preview](Ui22.png)
 ![Preview](Ui33.png)
 ![Preview](Ui44.png)
