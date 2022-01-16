@@ -6,7 +6,7 @@ In this Episode , you will learn how to create a Login Screen ,Sign-Up Screen, A
 🚀 Nice, clean and modern Hotel Booking #App #UI made in #Flutter
 
 ## [Watch it on YouTube](https://youtu.be/-tHUmjIkGJ4)
-![Preview](U3.png)
+![Preview](U4.png)
    
 **Packages we are using:**
 
@@ -27,5 +27,6 @@ In this Episode , you will learn how to create a Login Screen ,Sign-Up Screen, A
 Now it contains all the screen, thanks for your love and support 🙏 
 
 ## Photos
-![Preview](/U1.png)
+![Preview](U1.png)
 ![Preview](U2.png)
+![Preview](U3.png)
