@@ -4,6 +4,7 @@ A new Flutter project.In this video, I'm going to show you how to make a Cool Ho
 In this tutorial, you will learn how to create a Splash Screen and Introduction Screen, how to implement a SmoothPageIndicator in Flutter.
 
 ## [Watch it on YouTube](https://youtu.be/-tHUmjIkGJ4)
+![Preview](U3.png)
    
 **Packages we are using:**
 
