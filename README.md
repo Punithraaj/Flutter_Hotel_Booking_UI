@@ -24,4 +24,4 @@ Now it contains all the screen, thanks for your love and support 🙏
 
 ## Photos
 ![Preview](/U1.png)
-![Preview](U2.png)
+![Preview](U22.png)
