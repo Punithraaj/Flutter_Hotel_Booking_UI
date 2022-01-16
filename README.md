@@ -22,6 +22,8 @@ In this Episode , you will learn how to create a Login Screen ,Sign-Up Screen, A
 
 => SignUp Screen
 
+=> Forgot Password Screen
+
 Now it contains all the screen, thanks for your love and support 🙏 
 
 ## Photos
