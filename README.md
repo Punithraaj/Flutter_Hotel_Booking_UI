@@ -1,16 +1,30 @@
-# flutter_hotel_booking_ui
+# Flutter_hotel_booking_ui
 
-A new Flutter project.
+In this video, I'm going to show you how to make a Cool Hotel Booking App using Flutter from scratch.
 
-## Getting Started
+In this Episode , you will learn how to create a Custom Navigation Bar for Navigating between Screen.
 
-This project is a starting point for a Flutter application.
+🚀 Nice, clean and modern Hotel Booking #App #UI made in #Flutter
 
-A few resources to get you started if this is your first Flutter project:
+## [Watch it on YouTube](https://youtu.be/cCion2y7hNE)
+![Preview](U4.png)
+   
+**Packages we are using:**
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+-   smooth_page_indicator: [link](https://pub.dev/packages/smooth_page_indicator)
+-   provider: [link](https://pub.dev/packages/provider)
+-   font_awesome_flutter: [link](https://pub.dev/packages/font_awesome_flutter)
+-   google_fonts: [link](https://pub.dev/packages/google_fonts)
+-   shared_preferences: [link](https://pub.dev/packages/shared_preferences)
+-   font_awesome_flutter [link](https://pub.dev/packages/font_awesome_flutter)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screens it contains:
+
+=> Custom Navigation Bar
+
+Now it contains all the screen, thanks for your love and support 🙏 
+
+## Photos
+![Preview](U1.png)
+![Preview](U2.png)
+![Preview](U3.png)
