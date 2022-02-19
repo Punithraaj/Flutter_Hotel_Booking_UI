@@ -7,7 +7,7 @@ In this Episode , you will learn how to create a Custom Navigation Bar for Navig
 🚀 Nice, clean and modern Hotel Booking #App #UI made in #Flutter
 
 ## [Watch it on YouTube](https://youtu.be/PV5GV9m0HvY)
-   ![Preview](MockUps.mp4)
+   ![Preview](MockUps.gif)
 **Packages we are using:**
 
 -   smooth_page_indicator: [link](https://pub.dev/packages/smooth_page_indicator)
