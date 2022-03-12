@@ -25,7 +25,7 @@ class _SearchScreenState extends State<SearchScreen>
   @override
   void initState() {
     animationController = AnimationController(
-        duration: Duration(milliseconds: 2000), vsync: this);
+        duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
 
@@ -82,7 +82,7 @@ class _SearchScreenState extends State<SearchScreen>
                               Expanded(
                                 child: Text(
                                   AppLocalizations(context).of("Last_search"),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
                                     letterSpacing: 0.5,
@@ -92,8 +92,8 @@ class _SearchScreenState extends State<SearchScreen>
                               Material(
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4.0)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(4.0)),
                                   onTap: () {
                                     setState(() {
                                       myController.text = '';
