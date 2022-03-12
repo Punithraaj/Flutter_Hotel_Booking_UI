@@ -273,7 +273,7 @@ class _HomeExploreScreenState extends State<HomeExploreScreen>
         child: InkWell(
           borderRadius: BorderRadius.all(Radius.circular(38)),
           onTap: () {
-            Scaffold();
+            NavigationServices(context).gotoSearchScreen();
           },
           child: CommonSearchBar(
             iconData: FontAwesomeIcons.search,

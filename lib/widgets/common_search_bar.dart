@@ -4,6 +4,7 @@ import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 
 class CommonSearchBar extends StatelessWidget {
   final String? text;
+  final TextEditingController? textEditingController;
   final bool enabled, ishsow;
   final double height;
   final IconData? iconData;
@@ -14,7 +15,8 @@ class CommonSearchBar extends StatelessWidget {
       this.enabled = false,
       this.height = 48,
       this.iconData,
-      this.ishsow = true})
+      this.ishsow = true,
+      this.textEditingController})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class CommonSearchBar extends StatelessWidget {
                   : SizedBox(),
               Expanded(
                 child: TextField(
+                  controller: textEditingController,
                   maxLines: 1,
                   enabled: enabled,
                   onChanged: (String txt) {},
