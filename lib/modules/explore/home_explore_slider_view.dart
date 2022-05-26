@@ -100,14 +100,9 @@ class _HomeExploreSliderViewState extends State<HomeExploreSliderView> {
             right: context.read<ThemeProvider>().languageType == LanguageType.ar
                 ? null
                 : 32,
-            // left: 32,
             left: context.read<ThemeProvider>().languageType == LanguageType.ar
                 ? 32
                 : null,
-            //     right: context.read<ThemeProvider>().languageType ==
-            //             LanguageType.ar
-            //         ? 32
-            //         : null,
             child: SmoothPageIndicator(
                 controller: pageController, // PageController
                 count: 3,
