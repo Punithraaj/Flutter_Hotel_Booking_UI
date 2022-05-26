@@ -2,7 +2,7 @@
 
 In this video, I'm going to show you how to make a Cool Hotel Booking App using Flutter from scratch.
 
-In this Episode , you will learn how to create a Custom Animated Search Screen to view the list of Hotels near by.
+In this Episode , you will learn how to create a Custom Animated Hotel Explorer and Room Booking Screen to view the list of Hotels near by.
 
 🚀 Nice, clean and modern Hotel Booking #App #UI made in #Flutter
 
@@ -31,4 +31,3 @@ Now it contains all the screen, thanks for your love and support 🙏
 ![Preview](U3.png)
 ![Preview](U4.png)
 ![Preview](U5.png)
-![Preview](U3.png)
