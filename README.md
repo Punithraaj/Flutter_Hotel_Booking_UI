@@ -29,3 +29,6 @@ Now it contains all the screen, thanks for your love and support 🙏
 ![Preview](U1.png)
 ![Preview](U2.png)
 ![Preview](U3.png)
+![Preview](U4.png)
+![Preview](U5.png)
+![Preview](U3.png)
