@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hotel_booking_ui/models/hotel_list_data.dart';
 import 'package:flutter_hotel_booking_ui/modules/bottom_tab/bottom_tab_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_booking/filter_screen/filters_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_booking/hotel_home_screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/hotel_detailes.dart';
+import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/reviews_list_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/room_booking_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/search_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/login/forgot_password.dart';
@@ -64,5 +67,15 @@ class NavigationServices {
   Future<dynamic> gotoRoomBookingScreen(String hotelname) async {
     return await _pushMaterialPageRoute(
         RoomBookingScreen(hotelName: hotelname));
+  }
+
+  Future<dynamic> gotoHotelDetailes(HotelListData hotelData) async {
+    return await _pushMaterialPageRoute(HotelDetailes(
+      hotelData: hotelData,
+    ));
+  }
+
+  Future<dynamic> gotoReviewsListScreen() async {
+    return await _pushMaterialPageRoute(ReviewsListScreen());
   }
 }

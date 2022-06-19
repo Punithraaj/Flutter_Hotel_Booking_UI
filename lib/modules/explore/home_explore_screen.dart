@@ -249,7 +249,7 @@ class _HomeExploreScreenState extends State<HomeExploreScreen>
       list.add(
         HotelListViewPage(
           callback: () {
-            Scaffold();
+            NavigationServices(context).gotoHotelDetailes(f);
           },
           hotelData: f,
           animation: animation,
