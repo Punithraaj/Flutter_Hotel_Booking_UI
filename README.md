@@ -1,7 +1,12 @@
 # Flutter_hotel_booking_ui
 
 A new Flutter project.In this video, I'm going to show you how to make a Cool Hotel Booking App using Flutter and visual studio code from scratch. 
+In this video, I'm going to show you how to make a Cool Hotel Booking App using Flutter and visual studio code from scratch. 
 In this tutorial, you will learn how to create a Splash Screen and Introduction Screen, how to implement a SmoothPageIndicator in Flutter.
+
+🚀 Nice, clean and modern Hotel Booking #App #UI made in #Flutter
+
+Click here to Subscribe to https://youtube.com/@TheFlutterAndDartAcademy
 
 ## [Watch it on YouTube](https://youtu.be/-tHUmjIkGJ4)
 ![Preview](U11.gif)
