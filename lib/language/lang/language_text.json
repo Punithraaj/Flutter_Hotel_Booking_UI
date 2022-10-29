@@ -560,11 +560,11 @@
         "ja": "Km"
     },
     {
-        "text_id": "amanda_text",
-        "en": "Amanda",
-        "fr": "Amanda",
-        "ar": "أماندا",
-        "ja": "アマンダ"
+        "text_id": "raaj_text",
+        "en": "Raaj",
+        "fr": "Raaj",
+        "ar": "راج",
+        "ja": "ラージ"
     },
     {
         "text_id": "view_edit",

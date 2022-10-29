@@ -7,9 +7,17 @@ import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/hotel_detailes.d
 import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/reviews_list_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/room_booking_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/search_screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/login/change_password.dart';
 import 'package:flutter_hotel_booking_ui/modules/login/forgot_password.dart';
 import 'package:flutter_hotel_booking_ui/modules/login/login_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/login/sign_up_Screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/profile/country_screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/profile/currency_screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/profile/edit_profile.dart';
+import 'package:flutter_hotel_booking_ui/modules/profile/hepl_center_screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/profile/how_do_screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/profile/invite_screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/profile/settings_screen.dart';
 import 'package:flutter_hotel_booking_ui/routes/routes.dart';
 
 class NavigationServices {
@@ -77,5 +85,39 @@ class NavigationServices {
 
   Future<dynamic> gotoReviewsListScreen() async {
     return await _pushMaterialPageRoute(ReviewsListScreen());
+  }
+
+  Future<dynamic> gotoEditProfile() async {
+    return await _pushMaterialPageRoute(EditProfile());
+  }
+
+  Future<dynamic> gotoSettingsScreen() async {
+    return await _pushMaterialPageRoute(SettingsScreen());
+  }
+
+  Future<dynamic> gotoHeplCenterScreen() async {
+    return await _pushMaterialPageRoute(HeplCenterScreen());
+  }
+
+  Future<dynamic> gotoChangepasswordScreen() async {
+    return await _pushMaterialPageRoute(ChangepasswordScreen());
+  }
+
+  Future<dynamic> gotoInviteFriend() async {
+    return await _pushMaterialPageRoute(InviteFriend());
+  }
+
+  Future<dynamic> gotoCurrencyScreen() async {
+    return await _pushMaterialPageRoute(CurrencyScreen(),
+        fullscreenDialog: true);
+  }
+
+  Future<dynamic> gotoCountryScreen() async {
+    return await _pushMaterialPageRoute(CountryScreen(),
+        fullscreenDialog: true);
+  }
+
+  Future<dynamic> gotoHowDoScreen() async {
+    return await _pushMaterialPageRoute(HowDoScreen());
   }
 }
