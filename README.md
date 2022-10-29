@@ -7,7 +7,7 @@ In this Episode , you will learn how to create a Custom Animated Search Screen t
 🚀 Nice, clean and modern Hotel Booking #App #UI made in #Flutter
 
 ## [Watch it on YouTube](https://youtu.be/PV5GV9m0HvY)
-   ![Preview](U4.gif)
+   ![Preview](U7.gif)
 **Packages we are using:**
 
 -   smooth_page_indicator: [link](https://pub.dev/packages/smooth_page_indicator)
@@ -29,3 +29,6 @@ Now it contains all the screen, thanks for your love and support 🙏
 ![Preview](U1.png)
 ![Preview](U2.png)
 ![Preview](U3.png)
+![Preview](U4.png)
+![Preview](U5.png)
+![Preview](U6.png)
