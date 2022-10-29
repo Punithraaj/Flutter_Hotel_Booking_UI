@@ -6,6 +6,8 @@ In this Episode , you will learn how to create a Custom Navigation Bar for Navig
 
 🚀 Nice, clean and modern Hotel Booking #App #UI made in #Flutter
 
+Click here to Subscribe to https://youtube.com/@TheFlutterAndDartAcademy
+
 ## [Watch it on YouTube](https://youtu.be/cCion2y7hNE)
 ![Preview](U4.png)
    
