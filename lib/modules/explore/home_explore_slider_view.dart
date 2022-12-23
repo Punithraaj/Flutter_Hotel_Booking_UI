@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
+import 'package:get/get.dart';
+import 'package:flutter_hotel_booking_ui/constants/localfiles.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/modules/splash/components/page_pop_view.dart';
-import 'package:flutter_hotel_booking_ui/providers/theme_provider.dart';
-import 'package:flutter_hotel_booking_ui/utils/enum.dart';
-import 'package:flutter_hotel_booking_ui/utils/localfiles.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:provider/provider.dart';
 
 class HomeExploreSliderView extends StatefulWidget {
   final double opValue;
@@ -18,7 +16,7 @@ class HomeExploreSliderView extends StatefulWidget {
       {Key? key, this.opValue = 0.0, required this.click})
       : super(key: key);
   @override
-  _HomeExploreSliderViewState createState() => _HomeExploreSliderViewState();
+  State<HomeExploreSliderView> createState() => _HomeExploreSliderViewState();
 }
 
 class _HomeExploreSliderViewState extends State<HomeExploreSliderView> {
@@ -31,31 +29,38 @@ class _HomeExploreSliderViewState extends State<HomeExploreSliderView> {
   @override
   void initState() {
     pageViewModelData.add(PageViewData(
-      titleText: 'cape Town',
-      subText: 'five_star',
+      titleText: Loc.alized.cape_town,
+      subText: Loc.alized.five_star,
       assetsImage: Localfiles.explore_2,
     ));
     pageViewModelData.add(PageViewData(
-      titleText: 'find_best_deals',
-      subText: 'five_star',
+      titleText: Loc.alized.find_best_deals,
+      subText: Loc.alized.five_star,
       assetsImage: Localfiles.explore_1,
     ));
     pageViewModelData.add(PageViewData(
-      titleText: 'find_best_deals',
-      subText: 'five_star',
+      titleText: Loc.alized.find_best_deals,
+      subText: Loc.alized.five_star,
       assetsImage: Localfiles.explore_3,
     ));
 
-    sliderTimer = Timer.periodic(Duration(seconds: 4), (timer) {
-      if (mounted) if (currentShowIndex == 0) {
-        pageController.animateTo(MediaQuery.of(context).size.width,
-            duration: Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 1) {
-        pageController.animateTo(MediaQuery.of(context).size.width * 2,
-            duration: Duration(seconds: 1), curve: Curves.fastOutSlowIn);
-      } else if (currentShowIndex == 2) {
-        pageController.animateTo(0,
-            duration: Duration(seconds: 1), curve: Curves.fastOutSlowIn);
+    sliderTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
+      if (mounted) {
+        if (currentShowIndex == 0) {
+          pageController.animateTo(MediaQuery.of(context).size.width,
+              duration: const Duration(seconds: 1),
+              curve: Curves.fastOutSlowIn);
+        } else {
+          if (currentShowIndex == 1) {
+            pageController.animateTo(MediaQuery.of(context).size.width * 2,
+                duration: const Duration(seconds: 1),
+                curve: Curves.fastOutSlowIn);
+          } else if (currentShowIndex == 2) {
+            pageController.animateTo(0,
+                duration: const Duration(seconds: 1),
+                curve: Curves.fastOutSlowIn);
+          }
+        }
       }
     });
     super.initState();
@@ -97,12 +102,13 @@ class _HomeExploreSliderViewState extends State<HomeExploreSliderView> {
           ),
           Positioned(
             bottom: 32,
-            right: context.read<ThemeProvider>().languageType == LanguageType.ar
-                ? null
-                : 32,
-            left: context.read<ThemeProvider>().languageType == LanguageType.ar
-                ? 32
-                : null,
+            right: Get.find<Loc>().isRTL ? null : 32,
+            // left: 32,
+            left: Get.find<Loc>().isRTL ? 32 : null,
+            //     right: Get.find<ThemeController>().languageType ==
+            //             LanguageType.ar
+            //         ? 32
+            //         : null,
             child: SmoothPageIndicator(
                 controller: pageController, // PageController
                 count: 3,
@@ -124,14 +130,14 @@ class PagePopup extends StatelessWidget {
   final PageViewData imageData;
   final double opValue;
 
-  const PagePopup({Key? key, required this.imageData, this.opValue: 0.0})
+  const PagePopup({Key? key, required this.imageData, this.opValue = 0.0})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
+        SizedBox(
           height: (MediaQuery.of(context).size.width * 1.3),
           width: MediaQuery.of(context).size.width,
           child: Image.asset(
@@ -149,29 +155,25 @@ class PagePopup extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: Text(
-                    AppLocalizations(context).of(imageData.titleText),
-                    textAlign: TextAlign.left,
-                    style: TextStyles(context)
-                        .getTitleStyle()
-                        .copyWith(color: AppTheme.whiteColor),
-                  ),
+                Text(
+                  imageData.titleText,
+                  textAlign: TextAlign.left,
+                  style: TextStyles(context)
+                      .getTitleStyle()
+                      .copyWith(color: AppTheme.whiteColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
-                Container(
-                  child: Text(
-                    AppLocalizations(context).of(imageData.subText),
-                    textAlign: TextAlign.left,
-                    style: TextStyles(context).getRegularStyle().copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: AppTheme.whiteColor),
-                  ),
+                Text(
+                  imageData.subText,
+                  textAlign: TextAlign.left,
+                  style: TextStyles(context).getRegularStyle().copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: AppTheme.whiteColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
               ],

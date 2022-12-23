@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/routes/route_names.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 
 class FilterBarUI extends StatelessWidget {
+  const FilterBarUI({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +29,7 @@ class FilterBarUI extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 0.0),
                     child: Text(
-                      AppLocalizations(context).of("hotel_found"),
+                      Loc.alized.hotel_found,
                       style: TextStyles(context).getRegularStyle(),
                     ),
                   ),
@@ -35,7 +37,7 @@ class FilterBarUI extends StatelessWidget {
                 Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(4.0),
                     ),
                     onTap: () {
@@ -46,7 +48,7 @@ class FilterBarUI extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Text(
-                            AppLocalizations(context).of("filtter"),
+                            Loc.alized.filtter,
                             style: TextStyles(context).getRegularStyle(),
                           ),
                           Padding(
@@ -62,7 +64,7 @@ class FilterBarUI extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 0,
             left: 0,
             right: 0,

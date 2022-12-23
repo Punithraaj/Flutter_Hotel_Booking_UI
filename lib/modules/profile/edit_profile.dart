@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/utils/localfiles.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/localfiles.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_appbar_view.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:flutter_hotel_booking_ui/widgets/remove_focuse.dart';
 import '../../models/setting_list_data.dart';
 
 class EditProfile extends StatefulWidget {
+  const EditProfile({Key? key}) : super(key: key);
+
   @override
-  _EditProfileState createState() => _EditProfileState();
+  State<EditProfile> createState() => _EditProfileState();
 }
 
 class _EditProfileState extends State<EditProfile> {
@@ -18,89 +20,83 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        backgroundColor: AppTheme.scaffoldBackgroundColor,
-        body: RemoveFocuse(
-          onClick: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CommonAppbarView(
-                iconData: Icons.arrow_back,
-                titleText: AppLocalizations(context).of("edit_profile"),
-                onBackClick: () {
-                  Navigator.pop(context);
-                },
-              ),
-              Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.only(
-                      bottom: 16 + MediaQuery.of(context).padding.bottom),
-                  itemCount: userInfoList.length,
-                  itemBuilder: (context, index) {
-                    return index == 0
-                        ? getProfileUI()
-                        : InkWell(
-                            onTap: () {},
-                            child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 8, right: 16),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 16.0, bottom: 16, top: 16),
-                                          child: Text(
-                                            AppLocalizations(context).of(
-                                                userInfoList[index].titleTxt),
-                                            style: TextStyles(context)
-                                                .getDescriptionStyle()
-                                                .copyWith(
-                                                  fontSize: 16,
-                                                ),
-                                          ),
+    return Scaffold(
+      backgroundColor: AppTheme.scaffoldBackgroundColor,
+      body: RemoveFocuse(
+        onClick: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            CommonAppbarView(
+              iconData: Icons.arrow_back,
+              titleText: Loc.alized.edit_profile,
+              onBackClick: () {
+                Navigator.pop(context);
+              },
+            ),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.only(
+                    bottom: 16 + MediaQuery.of(context).padding.bottom),
+                itemCount: userInfoList.length,
+                itemBuilder: (context, index) {
+                  return index == 0
+                      ? getProfileUI()
+                      : InkWell(
+                          onTap: () {},
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 8, right: 16),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 16.0, bottom: 16, top: 16),
+                                        child: Text(
+                                          userInfoList[index].titleTxt,
+                                          style: TextStyles(context)
+                                              .getDescriptionStyle()
+                                              .copyWith(
+                                                fontSize: 16,
+                                              ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 16.0, bottom: 16, top: 16),
-                                        child: Container(
-                                          child: Text(
-                                            userInfoList[index].subTxt,
-                                            style: TextStyles(context)
-                                                .getRegularStyle()
-                                                .copyWith(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 16,
-                                                ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 16.0, bottom: 16, top: 16),
+                                      child: Text(
+                                        userInfoList[index].subTxt,
+                                        style: TextStyles(context)
+                                            .getRegularStyle()
+                                            .copyWith(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                            ),
+                                      ),
+                                    )
+                                  ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 16, right: 16),
-                                  child: Divider(
-                                    height: 1,
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                  },
-                ),
-              )
-            ],
-          ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 16, right: 16),
+                                child: Divider(
+                                  height: 1,
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                },
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -113,7 +109,7 @@ class _EditProfileState extends State<EditProfile> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Container(
+          SizedBox(
             width: 130,
             height: 130,
             child: Stack(
@@ -129,12 +125,12 @@ class _EditProfileState extends State<EditProfile> {
                       BoxShadow(
                         color: Theme.of(context).dividerColor,
                         blurRadius: 8,
-                        offset: Offset(4, 4),
+                        offset: const Offset(4, 4),
                       ),
                     ],
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(60.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(60.0)),
                     child: Image.asset(Localfiles.userImage),
                   ),
                 ),
@@ -147,7 +143,8 @@ class _EditProfileState extends State<EditProfile> {
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        borderRadius: BorderRadius.all(Radius.circular(24.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(24.0)),
                         onTap: () {},
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

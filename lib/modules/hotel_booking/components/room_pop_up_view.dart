@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
+import 'package:get/get.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
+import 'package:flutter_hotel_booking_ui/logic/controllers/theme_provider.dart';
 import 'package:flutter_hotel_booking_ui/models/room_data.dart';
-import 'package:flutter_hotel_booking_ui/providers/theme_provider.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_button.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
-import 'package:provider/provider.dart';
 
 class RoomPopupView extends StatefulWidget {
   final Function(RoomData) onChnage;
@@ -20,7 +20,7 @@ class RoomPopupView extends StatefulWidget {
     required this.roomData,
   }) : super(key: key);
   @override
-  _RoomPopupViewState createState() => _RoomPopupViewState();
+  State<RoomPopupView> createState() => _RoomPopupViewState();
 }
 
 class _RoomPopupViewState extends State<RoomPopupView>
@@ -33,8 +33,8 @@ class _RoomPopupViewState extends State<RoomPopupView>
   RoomData? _roomData;
   @override
   void initState() {
-    animationController =
-        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 400), vsync: this);
 
     animationController.forward();
     _roomData = RoomData(
@@ -52,7 +52,7 @@ class _RoomPopupViewState extends State<RoomPopupView>
 
   @override
   Widget build(BuildContext context) {
-    final appTheme = Provider.of<ThemeProvider>(context);
+    final appTheme = Get.find<ThemeController>();
     return Center(
       child: Scaffold(
         backgroundColor: appTheme.isLightMode
@@ -62,7 +62,7 @@ class _RoomPopupViewState extends State<RoomPopupView>
           animation: animationController,
           builder: (BuildContext context, Widget? child) {
             return AnimatedOpacity(
-              duration: Duration(milliseconds: 100),
+              duration: const Duration(milliseconds: 100),
               opacity: animationController.value,
               child: Center(
                 child: Padding(
@@ -78,33 +78,32 @@ class _RoomPopupViewState extends State<RoomPopupView>
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            AppLocalizations(context).of("room_selected"),
+                            Loc.alized.room_selected,
                             style: TextStyles(context).getBoldStyle().copyWith(
                                   fontSize: 16,
                                 ),
                           ),
                         ),
-                        Divider(
+                        const Divider(
                           height: 1,
                         ),
-                        getRowView(AppLocalizations(context).of("number_room"),
+                        getRowView(Loc.alized.number_room,
                             _roomData!.numberRoom, PopupTextType.no),
-                        getRowView(AppLocalizations(context).of("people_data"),
-                            _roomData!.people, PopupTextType.ad),
+                        getRowView(Loc.alized.people_data, _roomData!.people,
+                            PopupTextType.ad),
                         // getRowView("Children", " (0-17)", ch, PopupTextType.ch),
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 16, right: 16, bottom: 16, top: 24),
                           child: CommonButton(
-                            buttonText:
-                                AppLocalizations(context).of("Apply_date"),
+                            buttonText: Loc.alized.apply_date,
                             onTap: () {
                               try {
                                 widget.onChnage(
                                   _roomData!,
                                 );
                                 Navigator.pop(context);
-                              } catch (e) {}
+                              } catch (_) {}
                             },
                           ),
                         )
@@ -136,7 +135,7 @@ class _RoomPopupViewState extends State<RoomPopupView>
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: <Widget>[
-                          Divider(
+                          const Divider(
                             height: 1,
                           ),
                           Expanded(

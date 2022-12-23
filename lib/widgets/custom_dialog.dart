@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
 
 class CustomDialog extends StatefulWidget {
-  const CustomDialog({
-    required this.title,
-    this.description = '',
-    this.topWidget,
-    this.descriptionWidget,
-    this.actionButtonList,
-    this.isVerical = false,
-    this.onCloseClick,
-  });
-
   final VoidCallback? onCloseClick;
   final String title, description;
   final Widget? topWidget;
@@ -20,8 +10,19 @@ class CustomDialog extends StatefulWidget {
   final List<Widget>? actionButtonList;
   final bool isVerical;
 
+  const CustomDialog({
+    Key? key,
+    this.onCloseClick,
+    required this.title,
+    this.description = '',
+    this.topWidget,
+    this.descriptionWidget,
+    this.actionButtonList,
+    this.isVerical = false,
+  }) : super(key: key);
+
   @override
-  _CustomDialogState createState() => _CustomDialogState();
+  State<CustomDialog> createState() => _CustomDialogState();
 }
 
 class _CustomDialogState extends State<CustomDialog>
@@ -32,7 +33,7 @@ class _CustomDialogState extends State<CustomDialog>
   void initState() {
     animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 480));
-    WidgetsBinding.instance!.addPostFrameCallback((_) => _startAnimation());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startAnimation());
     super.initState();
   }
 
@@ -54,7 +55,7 @@ class _CustomDialogState extends State<CustomDialog>
         return ScaleTransition(
           scale: CurvedAnimation(
               parent: animationController!,
-              curve: Interval(0.0, 1.0, curve: Curves.easeOutBack)),
+              curve: const Interval(0.0, 1.0, curve: Curves.easeOutBack)),
           child: Dialog(
             clipBehavior: Clip.none,
             shape: RoundedRectangleBorder(

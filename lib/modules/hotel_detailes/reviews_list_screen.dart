@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/review_data_view.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_appbar_view.dart';
 import '../../models/hotel_list_data.dart';
-import 'review_data_view.dart';
 
 class ReviewsListScreen extends StatefulWidget {
+  const ReviewsListScreen({Key? key}) : super(key: key);
+
   @override
-  _ReviewsListScreenState createState() => _ReviewsListScreenState();
+  State<ReviewsListScreen> createState() => _ReviewsListScreenState();
 }
 
 class _ReviewsListScreenState extends State<ReviewsListScreen>
@@ -15,7 +17,7 @@ class _ReviewsListScreenState extends State<ReviewsListScreen>
   @override
   void initState() {
     animationController = AnimationController(
-        duration: Duration(milliseconds: 2000), vsync: this);
+        duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
 
@@ -42,7 +44,7 @@ class _ReviewsListScreenState extends State<ReviewsListScreen>
           // animation of Review and feedback data
           Expanded(
             child: ListView.builder(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.only(
                   top: 8, bottom: MediaQuery.of(context).padding.bottom + 8),
               itemCount: reviewsList.length,

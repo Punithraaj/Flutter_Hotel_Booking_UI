@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
 
 class CommonCard extends StatefulWidget {
   final Color? color;
@@ -9,7 +9,7 @@ class CommonCard extends StatefulWidget {
   const CommonCard({Key? key, this.color, this.radius = 16, this.child})
       : super(key: key);
   @override
-  _CommonCardState createState() => _CommonCardState();
+  State<CommonCard> createState() => _CommonCardState();
 }
 
 class _CommonCardState extends State<CommonCard> {

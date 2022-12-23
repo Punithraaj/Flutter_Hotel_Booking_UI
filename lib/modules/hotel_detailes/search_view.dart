@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hotel_booking_ui/constants/helper.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
 import 'package:flutter_hotel_booking_ui/models/hotel_list_data.dart';
-import 'package:flutter_hotel_booking_ui/utils/helper.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:flutter_hotel_booking_ui/widgets/list_cell_animation_view.dart';
 
@@ -31,7 +31,7 @@ class SerchView extends StatelessWidget {
             color: AppTheme.backgroundColor,
             radius: 16,
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(16.0)),
               child: Column(
                 children: <Widget>[
                   AspectRatio(

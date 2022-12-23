@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/models/hotel_list_data.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:flutter_hotel_booking_ui/widgets/list_cell_animation_view.dart';
 
@@ -41,7 +41,8 @@ class ReviewsView extends StatelessWidget {
                       radius: 8,
                       color: AppTheme.whiteColor,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
                         child: AspectRatio(
                           aspectRatio: 1,
                           child: Image.asset(
@@ -66,8 +67,8 @@ class ReviewsView extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          AppLocalizations(context).of("last_update"),
-                          style: new TextStyles(context)
+                          Loc.alized.last_update,
+                          style: TextStyles(context)
                               .getDescriptionStyle()
                               .copyWith(
                                 fontWeight: FontWeight.w100,
@@ -76,7 +77,7 @@ class ReviewsView extends StatelessWidget {
                         ),
                         Text(
                           reviewsList.dateTxt,
-                          style: new TextStyles(context)
+                          style: TextStyles(context)
                               .getDescriptionStyle()
                               .copyWith(
                                 fontWeight: FontWeight.w100,
@@ -89,9 +90,7 @@ class ReviewsView extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           "(${reviewsList.rating})",
-                          style: new TextStyles(context)
-                              .getRegularStyle()
-                              .copyWith(
+                          style: TextStyles(context).getRegularStyle().copyWith(
                                 fontWeight: FontWeight.w100,
                               ),
                         ),
@@ -127,14 +126,14 @@ class ReviewsView extends StatelessWidget {
                 Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                     onTap: () {},
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: Row(
                         children: <Widget>[
                           Text(
-                            AppLocalizations(context).of("reply"),
+                            Loc.alized.reply,
                             textAlign: TextAlign.left,
                             style:
                                 TextStyles(context).getRegularStyle().copyWith(
@@ -159,7 +158,7 @@ class ReviewsView extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(
+            const Divider(
               height: 1,
             )
           ],

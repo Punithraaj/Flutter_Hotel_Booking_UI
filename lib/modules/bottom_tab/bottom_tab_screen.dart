@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/modules/explore/home_explore_screen.dart';
-import 'package:flutter_hotel_booking_ui/modules/myTrips/my_trips_screen.dart';
-import 'package:flutter_hotel_booking_ui/modules/profile/profile_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/providers/theme_provider.dart';
-import 'package:flutter_hotel_booking_ui/modules/bottom_tab/components/tab_button_UI.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
+import 'package:flutter_hotel_booking_ui/modules/bottom_tab/components/tab_button_ui.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
-import 'package:provider/provider.dart';
+import '../explore/home_explore.dart';
+import '../myTrips/my_trips_screen.dart';
+import '../profile/profile_screen.dart';
 
 class BottomTabScreen extends StatefulWidget {
+  const BottomTabScreen({Key? key}) : super(key: key);
+
   @override
-  _BottomTabScreenState createState() => _BottomTabScreenState();
+  State<BottomTabScreen> createState() => _BottomTabScreenState();
 }
 
 class _BottomTabScreenState extends State<BottomTabScreen>
@@ -20,14 +20,14 @@ class _BottomTabScreenState extends State<BottomTabScreen>
   late AnimationController _animationController;
   bool _isFirstTime = true;
   Widget _indexView = Container();
-  BottomBarType bottomBarType = BottomBarType.Explore;
+  BottomBarType bottomBarType = BottomBarType.explore;
 
   @override
   void initState() {
-    _animationController =
-        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+    _animationController = AnimationController(
+        duration: const Duration(milliseconds: 400), vsync: this);
     _indexView = Container();
-    WidgetsBinding.instance!.addPostFrameCallback((_) => _startLoadScreen());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startLoadScreen());
     super.initState();
   }
 
@@ -39,7 +39,7 @@ class _BottomTabScreenState extends State<BottomTabScreen>
         animationController: _animationController,
       );
     });
-    _animationController..forward();
+    _animationController.forward();
   }
 
   @override
@@ -50,21 +50,17 @@ class _BottomTabScreenState extends State<BottomTabScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (_, provider, child) => Container(
-        child: Scaffold(
-          bottomNavigationBar: Container(
-              height: 60 + MediaQuery.of(context).padding.bottom,
-              child: getBottomBarUI(bottomBarType)),
-          body: _isFirstTime
-              ? Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
-                )
-              : _indexView,
-        ),
-      ),
+    return Scaffold(
+      bottomNavigationBar: SizedBox(
+          height: 60 + MediaQuery.of(context).padding.bottom,
+          child: getBottomBarUI(bottomBarType)),
+      body: _isFirstTime
+          ? const Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            )
+          : _indexView,
     );
   }
 
@@ -72,19 +68,19 @@ class _BottomTabScreenState extends State<BottomTabScreen>
     if (tabType != bottomBarType) {
       bottomBarType = tabType;
       _animationController.reverse().then((f) {
-        if (tabType == BottomBarType.Explore) {
+        if (tabType == BottomBarType.explore) {
           setState(() {
             _indexView = HomeExploreScreen(
               animationController: _animationController,
             );
           });
-        } else if (tabType == BottomBarType.Trips) {
+        } else if (tabType == BottomBarType.trips) {
           setState(() {
             _indexView = MyTripsScreen(
               animationController: _animationController,
             );
           });
-        } else if (tabType == BottomBarType.Profile) {
+        } else if (tabType == BottomBarType.profile) {
           setState(() {
             _indexView = ProfileScreen(
               animationController: _animationController,
@@ -105,26 +101,26 @@ class _BottomTabScreenState extends State<BottomTabScreen>
             children: <Widget>[
               TabButtonUI(
                 icon: Icons.search,
-                isSelected: tabType == BottomBarType.Explore,
-                text: AppLocalizations(context).of("explore"),
+                isSelected: tabType == BottomBarType.explore,
+                text: Loc.alized.explore,
                 onTap: () {
-                  tabClick(BottomBarType.Explore);
+                  tabClick(BottomBarType.explore);
                 },
               ),
               TabButtonUI(
                 icon: FontAwesomeIcons.heart,
-                isSelected: tabType == BottomBarType.Trips,
-                text: AppLocalizations(context).of("trips"),
+                isSelected: tabType == BottomBarType.trips,
+                text: Loc.alized.trips,
                 onTap: () {
-                  tabClick(BottomBarType.Trips);
+                  tabClick(BottomBarType.trips);
                 },
               ),
               TabButtonUI(
                 icon: FontAwesomeIcons.user,
-                isSelected: tabType == BottomBarType.Profile,
-                text: AppLocalizations(context).of("profile"),
+                isSelected: tabType == BottomBarType.profile,
+                text: Loc.alized.profile,
                 onTap: () {
-                  tabClick(BottomBarType.Profile);
+                  tabClick(BottomBarType.profile);
                 },
               ),
             ],
@@ -138,4 +134,4 @@ class _BottomTabScreenState extends State<BottomTabScreen>
   }
 }
 
-enum BottomBarType { Explore, Trips, Profile }
+enum BottomBarType { explore, trips, profile }

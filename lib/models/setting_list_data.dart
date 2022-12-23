@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 
 class SettingsListData {
   String titleTxt;
@@ -27,95 +28,95 @@ class SettingsListData {
     return countryList;
   }
 
-  static List<SettingsListData> userSettingsList = [
-    SettingsListData(
-      titleTxt: 'change_password',
-      isSelected: false,
-      iconData: FontAwesomeIcons.lock,
-    ),
-    SettingsListData(
-      titleTxt: 'invite_friend',
-      isSelected: false,
-      iconData: FontAwesomeIcons.userFriends,
-    ),
-    SettingsListData(
-      titleTxt: 'credit_coupons',
-      isSelected: false,
-      iconData: FontAwesomeIcons.gift,
-    ),
-    SettingsListData(
-      titleTxt: 'help_center',
-      isSelected: false,
-      iconData: FontAwesomeIcons.infoCircle,
-    ),
-    SettingsListData(
-      titleTxt: 'payment_text',
-      isSelected: false,
-      iconData: FontAwesomeIcons.wallet,
-    ),
-    SettingsListData(
-      titleTxt: 'setting_text',
-      isSelected: false,
-      iconData: FontAwesomeIcons.cog,
-    )
-  ];
-  static List<SettingsListData> settingsList = [
-    SettingsListData(
-      titleTxt: 'Notifications',
-      isSelected: false,
-      iconData: FontAwesomeIcons.solidBell,
-    ),
-    SettingsListData(
-      titleTxt: 'Theme Mode',
-      isSelected: false,
-      iconData: FontAwesomeIcons.skyatlas,
-    ),
-    SettingsListData(
-      titleTxt: 'Fonts',
-      isSelected: false,
-      iconData: FontAwesomeIcons.font,
-    ),
-    SettingsListData(
-      titleTxt: 'Color',
-      isSelected: false,
-      iconData: Icons.color_lens,
-    ),
-    SettingsListData(
-      titleTxt: 'Language',
-      isSelected: false,
-      iconData: Icons.translate_outlined,
-    ),
-    SettingsListData(
-      titleTxt: 'Country',
-      isSelected: false,
-      iconData: FontAwesomeIcons.userFriends,
-    ),
-    SettingsListData(
-      titleTxt: 'Currency',
-      isSelected: false,
-      iconData: FontAwesomeIcons.gift,
-    ),
-    SettingsListData(
-      titleTxt: 'Terms of Services',
-      isSelected: false,
-      iconData: Icons.keyboard_arrow_right,
-    ),
-    SettingsListData(
-      titleTxt: 'Privacy Policy',
-      isSelected: false,
-      iconData: Icons.keyboard_arrow_right,
-    ),
-    SettingsListData(
-      titleTxt: 'Give Us Feedbacks',
-      isSelected: false,
-      iconData: Icons.keyboard_arrow_right,
-    ),
-    SettingsListData(
-      titleTxt: 'Log out',
-      isSelected: false,
-      iconData: Icons.keyboard_arrow_right,
-    )
-  ];
+  static List<SettingsListData> get userSettingsList => [
+        SettingsListData(
+          titleTxt: Loc.alized.change_password,
+          isSelected: false,
+          iconData: FontAwesomeIcons.lock,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.invite_friend,
+          isSelected: false,
+          iconData: FontAwesomeIcons.userGroup,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.credit_coupons,
+          isSelected: false,
+          iconData: FontAwesomeIcons.gift,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.help_center,
+          isSelected: false,
+          iconData: FontAwesomeIcons.circleInfo,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.payment_text,
+          isSelected: false,
+          iconData: FontAwesomeIcons.wallet,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.setting_text,
+          isSelected: false,
+          iconData: FontAwesomeIcons.gear,
+        )
+      ];
+  static List<SettingsListData> get settingsList => [
+        SettingsListData(
+          titleTxt: Loc.alized.notifications,
+          isSelected: false,
+          iconData: FontAwesomeIcons.solidBell,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.theme_mode,
+          isSelected: false,
+          iconData: FontAwesomeIcons.skyatlas,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.fonts,
+          isSelected: false,
+          iconData: FontAwesomeIcons.font,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.color,
+          isSelected: false,
+          iconData: Icons.color_lens,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.language,
+          isSelected: false,
+          iconData: Icons.translate_outlined,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.country,
+          isSelected: false,
+          iconData: FontAwesomeIcons.userGroup,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.currency,
+          isSelected: false,
+          iconData: FontAwesomeIcons.gift,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.terms_of_services,
+          isSelected: false,
+          iconData: Icons.keyboard_arrow_right,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.privacy_policy,
+          isSelected: false,
+          iconData: Icons.keyboard_arrow_right,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.give_us_feedbacks,
+          isSelected: false,
+          iconData: Icons.keyboard_arrow_right,
+        ),
+        SettingsListData(
+          titleTxt: Loc.alized.log_out,
+          isSelected: false,
+          iconData: Icons.keyboard_arrow_right,
+        )
+      ];
 
   static List<SettingsListData> currencyList = [
     SettingsListData(

@@ -10,7 +10,7 @@ class FinishTripView extends StatefulWidget {
       : super(key: key);
 
   @override
-  _FinishTripViewState createState() => _FinishTripViewState();
+  State<FinishTripView> createState() => _FinishTripViewState();
 }
 
 class _FinishTripViewState extends State<FinishTripView> {
@@ -24,31 +24,29 @@ class _FinishTripViewState extends State<FinishTripView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        itemCount: hotelList.length,
-        padding: EdgeInsets.only(top: 8, bottom: 16),
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          var count = hotelList.length > 10 ? 10 : hotelList.length;
-          var animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-              parent: widget.animationController,
-              curve: Interval((1 / count) * index, 1.0,
-                  curve: Curves.fastOutSlowIn)));
-          widget.animationController.forward();
-          //Finished hotel data list and UI View
-          return HotelListViewData(
-            callback: () {
-              NavigationServices(context)
-                  .gotoRoomBookingScreen(hotelList[index].titleTxt);
-            },
-            hotelData: hotelList[index],
-            animation: animation,
-            animationController: widget.animationController,
-            isShowDate: (index % 2) != 0,
-          );
-        },
-      ),
+    return ListView.builder(
+      itemCount: hotelList.length,
+      padding: const EdgeInsets.only(top: 8, bottom: 16),
+      scrollDirection: Axis.vertical,
+      itemBuilder: (context, index) {
+        var count = hotelList.length > 10 ? 10 : hotelList.length;
+        var animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve: Interval((1 / count) * index, 1.0,
+                curve: Curves.fastOutSlowIn)));
+        widget.animationController.forward();
+        //Finished hotel data list and UI View
+        return HotelListViewData(
+          callback: () {
+            NavigationServices(context)
+                .gotoRoomBookingScreen(hotelList[index].titleTxt);
+          },
+          hotelData: hotelList[index],
+          animation: animation,
+          animationController: widget.animationController,
+          isShowDate: (index % 2) != 0,
+        );
+      },
     );
   }
 }

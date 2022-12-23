@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
 
 class CommonAppbarView extends StatelessWidget {
   final double? topPadding;
@@ -30,14 +30,14 @@ class CommonAppbarView extends StatelessWidget {
           SizedBox(
             height: AppBar().preferredSize.height,
             child: Padding(
-              padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-              child: Container(
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+              child: SizedBox(
                 width: AppBar().preferredSize.height - 8,
                 height: AppBar().preferredSize.height - 8,
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(32.0),
                     ),
                     onTap: onBackClick,

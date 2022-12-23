@@ -1,16 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/models/popular_filter_list.dart';
-import 'package:flutter_hotel_booking_ui/modules/hotel_booking/filter_screen/slider_view.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_appbar_view.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_button.dart';
+import '../../../models/popular_filter_list.dart';
 import 'range_slider_view.dart';
+import 'slider_view.dart';
 
 class FiltersScreen extends StatefulWidget {
+  const FiltersScreen({Key? key}) : super(key: key);
+
   @override
-  _FiltersScreenState createState() => _FiltersScreenState();
+  State<FiltersScreen> createState() => _FiltersScreenState();
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
@@ -19,7 +21,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   List<PopularFilterListData> accomodationListData =
       PopularFilterListData.accomodationList;
 
-  RangeValues _values = RangeValues(100, 600);
+  RangeValues _values = const RangeValues(100, 600);
   double distValue = 50.0;
 
   @override
@@ -37,7 +39,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               onBackClick: () {
                 Navigator.pop(context);
               },
-              titleText: AppLocalizations(context).of("filtter"),
+              titleText: Loc.alized.filtter,
             ),
             // Padding(
             //   padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
@@ -51,17 +53,17 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     children: <Widget>[
                       // hotel price filter
                       priceBarFilter(),
-                      Divider(
+                      const Divider(
                         height: 1,
                       ),
                       // facilitate filter in hotel
                       popularFilter(),
-                      Divider(
+                      const Divider(
                         height: 1,
                       ),
                       //hotel distance from city
                       distanceViewUI(),
-                      Divider(
+                      const Divider(
                         height: 1,
                       ),
                       // all type of  accommodation
@@ -71,7 +73,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 ),
               ),
             ),
-            Divider(
+            const Divider(
               height: 1,
             ),
             Padding(
@@ -81,10 +83,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   bottom: 16 + MediaQuery.of(context).padding.bottom,
                   top: 8),
               child: CommonButton(
-                  buttonText: AppLocalizations(context).of("Apply_text"),
-                  onTap: () {
-                    Navigator.pop(context, true);
-                  }),
+                buttonText: Loc.alized.apply_text,
+              ),
             )
           ],
         ),
@@ -101,7 +101,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            AppLocalizations(context).of("type of accommodation"),
+            Loc.alized.type_of_accommodation,
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -115,7 +115,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             children: getAccomodationListUI(),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
       ],
@@ -130,7 +130,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         Material(
           color: Colors.transparent,
           child: InkWell(
-            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(4.0)),
             onTap: () {
               setState(() {
                 checkAppPosition(i);
@@ -142,8 +142,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      AppLocalizations(context).of(date.titleTxt),
-                      // style: TextStyle(color: Colors.white),
+                      date.titleTxt,
                     ),
                   ),
                   CupertinoSwitch(
@@ -164,7 +163,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         ),
       );
       if (i == 0) {
-        noList.add(Divider(
+        noList.add(const Divider(
           height: 1,
         ));
       }
@@ -175,13 +174,13 @@ class _FiltersScreenState extends State<FiltersScreen> {
   void checkAppPosition(int index) {
     if (index == 0) {
       if (accomodationListData[0].isSelected) {
-        accomodationListData.forEach((d) {
+        for (var d in accomodationListData) {
           d.isSelected = false;
-        });
+        }
       } else {
-        accomodationListData.forEach((d) {
+        for (var d in accomodationListData) {
           d.isSelected = true;
-        });
+        }
       }
     } else {
       accomodationListData[index].isSelected =
@@ -214,7 +213,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            AppLocalizations(context).of("distance from city"),
+            Loc.alized.distance_from_city,
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -228,7 +227,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             distValue = value;
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
       ],
@@ -244,7 +243,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            AppLocalizations(context).of("popular filter"),
+            Loc.alized.popular_filter,
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -258,7 +257,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             children: getPList(),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         )
       ],
@@ -268,7 +267,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   List<Widget> getPList() {
     List<Widget> noList = [];
     var cout = 0;
-    final columCount = 2;
+    const columCount = 2;
     for (var i = 0; i < popularFilterListData.length / columCount; i++) {
       List<Widget> listUI = [];
       for (var i = 0; i < columCount; i++) {
@@ -281,7 +280,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   Material(
                     color: Colors.transparent,
                     child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(4.0)),
                       onTap: () {
                         setState(() {
                           date.isSelected = !date.isSelected;
@@ -300,13 +300,13 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                   ? Theme.of(context).primaryColor
                                   : Colors.grey.withOpacity(0.6),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             FittedBox(
                               fit: BoxFit.cover,
                               child: Text(
-                                AppLocalizations(context).of(date.titleTxt),
+                                date.titleTxt,
                               ),
                             ),
                           ],
@@ -319,7 +319,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             ),
           );
           cout += 1;
-        } catch (e) {}
+        } catch (_) {}
       }
       noList.add(Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -339,7 +339,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            AppLocalizations(context).of("price_text"),
+            Loc.alized.price_text,
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -353,7 +353,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             _values = values;
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         )
       ],

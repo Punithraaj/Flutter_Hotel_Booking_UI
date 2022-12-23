@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/routes/route_names.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_appbar_view.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_search_bar.dart';
 import 'package:flutter_hotel_booking_ui/widgets/remove_focuse.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../models/setting_list_data.dart';
 
 class HeplCenterScreen extends StatefulWidget {
+  const HeplCenterScreen({Key? key}) : super(key: key);
+
   @override
-  _HeplCenterScreenState createState() => _HeplCenterScreenState();
+  State<HeplCenterScreen> createState() => _HeplCenterScreenState();
 }
 
 class _HeplCenterScreenState extends State<HeplCenterScreen> {
@@ -31,7 +33,7 @@ class _HeplCenterScreenState extends State<HeplCenterScreen> {
             Container(
               color: Theme.of(context).primaryColor,
               child: Padding(
-                padding: EdgeInsets.only(bottom: 24),
+                padding: const EdgeInsets.only(bottom: 24),
                 child: appBar(),
               ),
             ),
@@ -58,10 +60,8 @@ class _HeplCenterScreenState extends State<HeplCenterScreen> {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     helpSearchList[index].titleTxt != ""
-                                        ? AppLocalizations(context)
-                                            .of(helpSearchList[index].titleTxt)
-                                        : AppLocalizations(context)
-                                            .of(helpSearchList[index].subTxt),
+                                        ? helpSearchList[index].titleTxt
+                                        : helpSearchList[index].subTxt,
                                     style: TextStyles(context)
                                         .getRegularStyle()
                                         .copyWith(
@@ -86,12 +86,12 @@ class _HeplCenterScreenState extends State<HeplCenterScreen> {
                                               .disabledColor
                                               .withOpacity(0.3)),
                                     )
-                                  : SizedBox()
+                                  : const SizedBox()
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, right: 16),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 16, right: 16),
                           child: Divider(
                             height: 1,
                           ),
@@ -118,7 +118,7 @@ class _HeplCenterScreenState extends State<HeplCenterScreen> {
             Navigator.pop(context);
           },
           iconData: Icons.arrow_back,
-          titleText: AppLocalizations(context).of("how_can_help_you"),
+          titleText: Loc.alized.how_can_help_you,
         ),
         Padding(
             padding: const EdgeInsets.only(left: 24, right: 24, top: 16),
@@ -126,8 +126,8 @@ class _HeplCenterScreenState extends State<HeplCenterScreen> {
               color: AppTheme.backgroundColor,
               radius: 36,
               child: CommonSearchBar(
-                iconData: FontAwesomeIcons.search,
-                text: AppLocalizations(context).of("search_help_artical"),
+                iconData: FontAwesomeIcons.magnifyingGlass,
+                text: Loc.alized.search_help_artical,
               ),
             )),
       ],

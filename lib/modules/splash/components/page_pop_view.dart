@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
 
 class PagePopup extends StatelessWidget {
   final PageViewData imageData;
@@ -14,7 +13,7 @@ class PagePopup extends StatelessWidget {
         Expanded(
           flex: 8,
           child: Center(
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width - 120,
               child: AspectRatio(
                 aspectRatio: 1,
@@ -28,28 +27,24 @@ class PagePopup extends StatelessWidget {
         ),
         Expanded(
           flex: 1,
-          child: Container(
-            child: Text(
-              AppLocalizations(context).of(imageData.titleText),
-              textAlign: TextAlign.center,
-              style: TextStyles(context).getTitleStyle().copyWith(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
+          child: Text(
+            imageData.titleText,
+            textAlign: TextAlign.center,
+            style: TextStyles(context).getTitleStyle().copyWith(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
         Expanded(
           flex: 1,
-          child: Container(
-            child: Text(
-              AppLocalizations(context).of(imageData.subText),
-              textAlign: TextAlign.center,
-              style: TextStyles(context).getDescriptionStyle(),
-            ),
+          child: Text(
+            imageData.subText,
+            textAlign: TextAlign.center,
+            style: TextStyles(context).getDescriptionStyle(),
           ),
         ),
-        Expanded(
+        const Expanded(
           flex: 1,
           child: SizedBox(),
         ),

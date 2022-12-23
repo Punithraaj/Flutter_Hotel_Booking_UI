@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:flutter_hotel_booking_ui/constants/helper.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/models/hotel_list_data.dart';
-import 'package:flutter_hotel_booking_ui/providers/theme_provider.dart';
-import 'package:flutter_hotel_booking_ui/utils/enum.dart';
-import 'package:flutter_hotel_booking_ui/utils/helper.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:flutter_hotel_booking_ui/widgets/list_cell_animation_view.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 class HotelListViewData extends StatelessWidget {
   final bool isShowDate;
@@ -24,7 +22,7 @@ class HotelListViewData extends StatelessWidget {
       required this.animationController,
       required this.animation,
       required this.callback,
-      this.isShowDate: false})
+      this.isShowDate = false})
       : super(key: key);
 
   @override
@@ -33,24 +31,24 @@ class HotelListViewData extends StatelessWidget {
       animation: animation,
       animationController: animationController,
       child: Padding(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 16),
+        padding: const EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 16),
         child: InkWell(
-          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
           onTap: () {
             try {
               callback();
-            } catch (e) {}
+            } catch (_) {}
           },
           child: Row(
             children: <Widget>[
-              isShowDate ? getUI(context) : SizedBox(),
+              isShowDate ? getUI(context) : const SizedBox(),
               CommonCard(
                 color: AppTheme.backgroundColor,
                 radius: 16,
                 child: SizedBox(
                   height: 150,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(16.0)),
                     child: AspectRatio(
                       aspectRatio: 1.0,
                       child: Image.asset(
@@ -61,7 +59,7 @@ class HotelListViewData extends StatelessWidget {
                   ),
                 ),
               ),
-              !isShowDate ? getUI(context) : SizedBox(),
+              !isShowDate ? getUI(context) : const SizedBox(),
             ],
           ),
         ),
@@ -133,7 +131,7 @@ class HotelListViewData extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Icon(
-                            FontAwesomeIcons.mapMarkerAlt,
+                            FontAwesomeIcons.locationDot,
                             size: 12,
                             color: Theme.of(context).primaryColor,
                           ),
@@ -147,7 +145,7 @@ class HotelListViewData extends StatelessWidget {
                                 ),
                           ),
                           Text(
-                            AppLocalizations(context).of("km_to_city"),
+                            Loc.alized.km_to_city,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyles(context)
                                 .getDescriptionStyle()
@@ -174,14 +172,9 @@ class HotelListViewData extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                                top: context
-                                            .read<ThemeProvider>()
-                                            .languageType ==
-                                        LanguageType.ar
-                                    ? 4.0
-                                    : 2.0),
+                                top: Get.find<Loc>().isRTL ? 4.0 : 2.0),
                             child: Text(
-                              AppLocalizations(context).of("per_night"),
+                              Loc.alized.per_night,
                               style: TextStyles(context)
                                   .getDescriptionStyle()
                                   .copyWith(

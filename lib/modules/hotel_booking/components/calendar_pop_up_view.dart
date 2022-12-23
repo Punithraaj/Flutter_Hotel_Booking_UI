@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/modules/hotel_booking/components/custom_calendar.dart';
-import 'package:flutter_hotel_booking_ui/motel_app.dart';
-import 'package:flutter_hotel_booking_ui/providers/theme_provider.dart';
-import 'package:flutter_hotel_booking_ui/utils/enum.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_button.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:flutter_hotel_booking_ui/widgets/remove_focuse.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+import '../components/custom_calendar.dart';
 
 class CalendarPopupView extends StatefulWidget {
   final DateTime minimumDate;
@@ -32,7 +29,7 @@ class CalendarPopupView extends StatefulWidget {
     required this.maximumDate,
   }) : super(key: key);
   @override
-  _CalendarPopupViewState createState() => _CalendarPopupViewState();
+  State<CalendarPopupView> createState() => _CalendarPopupViewState();
 }
 
 class _CalendarPopupViewState extends State<CalendarPopupView>
@@ -40,14 +37,12 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
   late AnimationController animationController;
   DateTime? startDate;
   DateTime? endDate;
-  LanguageType _languageType = applicationcontext == null
-      ? LanguageType.en
-      : applicationcontext!.read<ThemeProvider>().languageType;
+  final String languageCode = Get.find<Loc>().locale.languageCode;
 
   @override
   void initState() {
-    animationController =
-        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 400), vsync: this);
     startDate = widget.initialStartDate;
     endDate = widget.initialEndDate;
     animationController.forward();
@@ -68,7 +63,7 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
         animation: animationController,
         builder: (BuildContext context, Widget? child) {
           return AnimatedOpacity(
-            duration: Duration(milliseconds: 100),
+            duration: const Duration(milliseconds: 100),
             opacity: animationController.value,
             child: RemoveFocuse(
               onClick: () {
@@ -88,13 +83,9 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                         Row(
                           children: <Widget>[
                             _getFromToUi(
-                              AppLocalizations(context).of("From_text"),
+                              Loc.alized.from_text,
                               startDate != null
-                                  ? DateFormat(
-                                          "EEE, dd MMM",
-                                          _languageType
-                                              .toString()
-                                              .split(".")[1])
+                                  ? DateFormat("EEE, dd MMM", languageCode)
                                       .format(startDate!)
                                   : "--/-- ",
                             ),
@@ -104,19 +95,15 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                               color: Theme.of(context).dividerColor,
                             ),
                             _getFromToUi(
-                              AppLocalizations(context).of("to_text"),
+                              Loc.alized.to_text,
                               endDate != null
-                                  ? DateFormat(
-                                          "EEE, dd MMM",
-                                          _languageType
-                                              .toString()
-                                              .split(".")[1])
+                                  ? DateFormat("EEE, dd MMM", languageCode)
                                       .format(endDate!)
                                   : "--/-- ",
                             ),
                           ],
                         ),
-                        Divider(
+                        const Divider(
                           height: 1,
                         ),
                         //Custome calendar page view
@@ -137,13 +124,12 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                           padding: const EdgeInsets.only(
                               left: 16, right: 16, bottom: 16, top: 8),
                           child: CommonButton(
-                            buttonText:
-                                AppLocalizations(context).of("Apply_date"),
+                            buttonText: Loc.alized.apply_date,
                             onTap: () {
                               try {
                                 widget.onApplyClick(startDate!, endDate!);
                                 Navigator.pop(context);
-                              } catch (e) {}
+                              } catch (_) {}
                             },
                           ),
                         )
@@ -172,7 +158,7 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                   fontSize: 16,
                 ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Text(

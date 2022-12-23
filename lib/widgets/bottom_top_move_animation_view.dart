@@ -17,8 +17,8 @@ class BottomTopMoveAnimationView extends StatelessWidget {
         return FadeTransition(
           opacity: animationController,
           // FadeTransition and Transform : just for screen loading animation on fistTime
-          child: new Transform(
-            transform: new Matrix4.translationValues(
+          child: Transform(
+            transform: Matrix4.translationValues(
                 0.0, 40 * (1.0 - animationController.value), 0.0),
             child: child,
           ),

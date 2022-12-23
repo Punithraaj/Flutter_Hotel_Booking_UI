@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
 import 'package:flutter_hotel_booking_ui/widgets/tap_effect.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
 
 class CommonButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -15,7 +15,7 @@ class CommonButton extends StatelessWidget {
     this.onTap,
     this.buttonText,
     this.buttonTextWidget,
-    this.textColor: Colors.white,
+    this.textColor = Colors.white,
     this.backgroundColor,
     this.padding,
     this.isClickable = true,
@@ -25,7 +25,7 @@ class CommonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? EdgeInsets.only(),
+      padding: padding ?? const EdgeInsets.only(),
       child: TapEffect(
         isClickable: isClickable!,
         onClick: onTap ?? () {},

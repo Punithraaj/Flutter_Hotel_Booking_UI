@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import '../../models/hotel_list_data.dart';
-// import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class RatingView extends StatelessWidget {
   final HotelListData hotelData;
@@ -41,7 +40,7 @@ class RatingView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          AppLocalizations(context).of("Overall_rating"),
+                          Loc.alized.overall_rating,
                           textAlign: TextAlign.left,
                           style: TextStyles(context).getRegularStyle().copyWith(
                                 // fontWeight: FontWeight.w500,
@@ -65,19 +64,19 @@ class RatingView extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             getBarUI('room', 95.0, context),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             getBarUI('service', 80.0, context),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             getBarUI('location', 65.0, context),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             getBarUI('price', 85, context),
@@ -95,7 +94,7 @@ class RatingView extends StatelessWidget {
         SizedBox(
           width: 60,
           child: Text(
-            AppLocalizations(context).of(text),
+            text,
             textAlign: TextAlign.left,
             style: TextStyles(context).getRegularStyle().copyWith(
                   // fontWeight: FontWeight.w500,
@@ -104,7 +103,7 @@ class RatingView extends StatelessWidget {
                 ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 8,
         ),
         Expanded(
@@ -124,7 +123,7 @@ class RatingView extends StatelessWidget {
               ),
               Expanded(
                 flex: 100 - percent.toInt(),
-                child: SizedBox(),
+                child: const SizedBox(),
               )
             ],
           ),

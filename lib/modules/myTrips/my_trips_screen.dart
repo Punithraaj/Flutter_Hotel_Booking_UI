@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/modules/myTrips/favorites_list_view.dart';
-import 'package:flutter_hotel_booking_ui/modules/myTrips/finish_trip_view.dart';
-import 'package:flutter_hotel_booking_ui/modules/myTrips/upcoming_list_view.dart';
-import 'package:flutter_hotel_booking_ui/providers/theme_provider.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/widgets/bottom_top_move_animation_view.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
-import 'package:provider/provider.dart';
+import 'favorites_list_view.dart';
+import 'finish_trip_view.dart';
+import 'upcoming_list_view.dart';
 
 class MyTripsScreen extends StatefulWidget {
   final AnimationController animationController;
@@ -16,7 +14,7 @@ class MyTripsScreen extends StatefulWidget {
   const MyTripsScreen({Key? key, required this.animationController})
       : super(key: key);
   @override
-  _MyTripsScreenState createState() => _MyTripsScreenState();
+  State<MyTripsScreen> createState() => _MyTripsScreenState();
 }
 
 class _MyTripsScreenState extends State<MyTripsScreen>
@@ -24,16 +22,16 @@ class _MyTripsScreenState extends State<MyTripsScreen>
   late AnimationController tabAnimationController;
 
   Widget indexView = Container();
-  TopBarType topBarType = TopBarType.Upcomming;
+  TopBarType topBarType = TopBarType.upcomming;
 
   @override
   void initState() {
-    tabAnimationController =
-        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+    tabAnimationController = AnimationController(
+        duration: const Duration(milliseconds: 400), vsync: this);
     indexView = UpcomingListView(
       animationController: tabAnimationController,
     );
-    tabAnimationController..forward();
+    tabAnimationController.forward();
     widget.animationController.forward();
 
     super.initState();
@@ -54,23 +52,21 @@ class _MyTripsScreenState extends State<MyTripsScreen>
   Widget build(BuildContext context) {
     return BottomTopMoveAnimationView(
       animationController: widget.animationController,
-      child: Consumer<ThemeProvider>(
-        builder: (context, provider, child) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              child: Container(child: _getappBar()),
-            ),
-            //upcoming finished favorites selected
-            tabViewUI(topBarType),
-            //hotel list view
-            Expanded(
-              child: indexView,
-            ),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            child: Container(child: _getappBar()),
+          ),
+          //upcoming finished favorites selected
+          tabViewUI(topBarType),
+          //hotel list view
+          Expanded(
+            child: indexView,
+          ),
+        ],
       ),
     );
   }
@@ -79,19 +75,19 @@ class _MyTripsScreenState extends State<MyTripsScreen>
     if (tabType != topBarType) {
       topBarType = tabType;
       tabAnimationController.reverse().then((f) {
-        if (tabType == TopBarType.Upcomming) {
+        if (tabType == TopBarType.upcomming) {
           setState(() {
             indexView = UpcomingListView(
               animationController: tabAnimationController,
             );
           });
-        } else if (tabType == TopBarType.Finished) {
+        } else if (tabType == TopBarType.finished) {
           setState(() {
             indexView = FinishTripView(
               animationController: tabAnimationController,
             );
           });
-        } else if (tabType == TopBarType.Favorites) {
+        } else if (tabType == TopBarType.favorites) {
           setState(() {
             indexView = FavoritesListView(
               animationController: tabAnimationController,
@@ -113,26 +109,26 @@ class _MyTripsScreenState extends State<MyTripsScreen>
             Row(
               children: <Widget>[
                 _getTopBarUi(() {
-                  tabClick(TopBarType.Upcomming);
+                  tabClick(TopBarType.upcomming);
                 },
-                    tabType == TopBarType.Upcomming
+                    tabType == TopBarType.upcomming
                         ? AppTheme.primaryColor
                         : AppTheme.secondaryTextColor,
-                    "upcoming"),
+                    Loc.alized.upcoming),
                 _getTopBarUi(() {
-                  tabClick(TopBarType.Finished);
+                  tabClick(TopBarType.finished);
                 },
-                    tabType == TopBarType.Finished
+                    tabType == TopBarType.finished
                         ? AppTheme.primaryColor
                         : AppTheme.secondaryTextColor,
-                    "finished"),
+                    Loc.alized.finished),
                 _getTopBarUi(() {
-                  tabClick(TopBarType.Favorites);
+                  tabClick(TopBarType.favorites);
                 },
-                    tabType == TopBarType.Favorites
+                    tabType == TopBarType.favorites
                         ? AppTheme.primaryColor
                         : AppTheme.secondaryTextColor,
-                    "favorites"),
+                    Loc.alized.favorites),
               ],
             ),
             SizedBox(
@@ -149,7 +145,7 @@ class _MyTripsScreenState extends State<MyTripsScreen>
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.all(Radius.circular(32.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(32.0)),
           highlightColor: Colors.transparent,
           splashColor: Theme.of(context).primaryColor.withOpacity(0.2),
           onTap: onTap,
@@ -157,7 +153,7 @@ class _MyTripsScreenState extends State<MyTripsScreen>
             padding: const EdgeInsets.only(bottom: 16, top: 16),
             child: Center(
               child: Text(
-                AppLocalizations(context).of(text),
+                text,
                 style: TextStyles(context)
                     .getRegularStyle()
                     .copyWith(fontWeight: FontWeight.w600, color: color),
@@ -176,7 +172,7 @@ class _MyTripsScreenState extends State<MyTripsScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(AppLocalizations(context).of("My_Trips"),
+          Text(Loc.alized.my_trips,
               style: TextStyles(context).getBoldStyle().copyWith(fontSize: 22)),
         ],
       ),
@@ -184,4 +180,4 @@ class _MyTripsScreenState extends State<MyTripsScreen>
   }
 }
 
-enum TopBarType { Upcomming, Finished, Favorites }
+enum TopBarType { upcomming, finished, favorites }

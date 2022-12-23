@@ -10,7 +10,7 @@ class PopularListView extends StatefulWidget {
       {Key? key, required this.callBack, required this.animationController})
       : super(key: key);
   @override
-  _PopularListViewState createState() => _PopularListViewState();
+  State<PopularListView> createState() => _PopularListViewState();
 }
 
 class _PopularListViewState extends State<PopularListView>
@@ -21,7 +21,7 @@ class _PopularListViewState extends State<PopularListView>
   @override
   void initState() {
     animationController = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
+        duration: const Duration(milliseconds: 1000), vsync: this);
     super.initState();
   }
 
@@ -40,14 +40,14 @@ class _PopularListViewState extends State<PopularListView>
   Widget build(BuildContext context) {
     return BottomTopMoveAnimationView(
       animationController: animationController!,
-      child: Container(
+      child: SizedBox(
         height: 180,
         width: double.infinity,
         child: FutureBuilder(
           future: getData(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return SizedBox();
+              return const SizedBox();
             } else {
               return ListView.builder(
                 padding: const EdgeInsets.only(

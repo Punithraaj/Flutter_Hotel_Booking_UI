@@ -10,7 +10,7 @@ import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/search_screen.da
 import 'package:flutter_hotel_booking_ui/modules/login/change_password.dart';
 import 'package:flutter_hotel_booking_ui/modules/login/forgot_password.dart';
 import 'package:flutter_hotel_booking_ui/modules/login/login_screen.dart';
-import 'package:flutter_hotel_booking_ui/modules/login/sign_up_Screen.dart';
+import 'package:flutter_hotel_booking_ui/modules/login/sign_up_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/profile/country_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/profile/currency_screen.dart';
 import 'package:flutter_hotel_booking_ui/modules/profile/edit_profile.dart';
@@ -26,7 +26,7 @@ class NavigationServices {
   final BuildContext context;
 
   Future<dynamic> _pushMaterialPageRoute(Widget widget,
-      {bool fullscreenDialog: false}) async {
+      {bool fullscreenDialog = false}) async {
     return await Navigator.push(
       context,
       MaterialPageRoute(
@@ -34,47 +34,30 @@ class NavigationServices {
     );
   }
 
-  void gotoSplashScreen() {
-    Navigator.pushNamedAndRemoveUntil(
-        context, RoutesName.Splash, (Route<dynamic> route) => false);
+  Future gotoSplashScreen() async {
+    await Navigator.pushNamedAndRemoveUntil(
+        context, RoutesName.splash, (Route<dynamic> route) => false);
   }
 
   void gotoIntroductionScreen() {
-    Navigator.pushNamedAndRemoveUntil(context, RoutesName.IntroductionScreen,
+    Navigator.pushNamedAndRemoveUntil(context, RoutesName.introductionScreen,
         (Route<dynamic> route) => false);
   }
 
   Future<dynamic> gotoLoginScreen() async {
-    return await _pushMaterialPageRoute(LoginScreen());
+    return await _pushMaterialPageRoute(const LoginScreen());
   }
 
   Future<dynamic> gotoTabScreen() async {
-    return await _pushMaterialPageRoute(BottomTabScreen());
+    return await _pushMaterialPageRoute(const BottomTabScreen());
   }
 
   Future<dynamic> gotoSignScreen() async {
-    return await _pushMaterialPageRoute(SignUpScreen());
+    return await _pushMaterialPageRoute(const SignUpScreen());
   }
 
   Future<dynamic> gotoForgotPassword() async {
-    return await _pushMaterialPageRoute(ForgotPasswordScreen());
-  }
-
-  Future<dynamic> gotoSearchScreen() async {
-    return await _pushMaterialPageRoute(SearchScreen());
-  }
-
-  Future<dynamic> gotoHotelHomeScreen() async {
-    return await _pushMaterialPageRoute(HotelHomeScreen());
-  }
-
-  Future<dynamic> gotoFiltersScreen() async {
-    return await _pushMaterialPageRoute(FiltersScreen());
-  }
-
-  Future<dynamic> gotoRoomBookingScreen(String hotelname) async {
-    return await _pushMaterialPageRoute(
-        RoomBookingScreen(hotelName: hotelname));
+    return await _pushMaterialPageRoute(const ForgotPasswordScreen());
   }
 
   Future<dynamic> gotoHotelDetailes(HotelListData hotelData) async {
@@ -83,41 +66,62 @@ class NavigationServices {
     ));
   }
 
+  Future<dynamic> gotoSearchScreen() async {
+    return await _pushMaterialPageRoute(const SearchScreen());
+  }
+
+  Future<dynamic> gotoHotelHomeScreen() async {
+    return await _pushMaterialPageRoute(const HotelHomeScreen());
+  }
+
+  Future<dynamic> gotoFiltersScreen() async {
+    return await _pushMaterialPageRoute(const FiltersScreen());
+  }
+
+  Future<dynamic> gotoRoomBookingScreen(String hotelname) async {
+    return await _pushMaterialPageRoute(
+        RoomBookingScreen(hotelName: hotelname));
+  }
+
   Future<dynamic> gotoReviewsListScreen() async {
-    return await _pushMaterialPageRoute(ReviewsListScreen());
+    return await _pushMaterialPageRoute(const ReviewsListScreen());
   }
 
   Future<dynamic> gotoEditProfile() async {
-    return await _pushMaterialPageRoute(EditProfile());
+    return await _pushMaterialPageRoute(const EditProfile());
   }
 
   Future<dynamic> gotoSettingsScreen() async {
-    return await _pushMaterialPageRoute(SettingsScreen());
+    return await _pushMaterialPageRoute(const SettingsScreen());
   }
 
   Future<dynamic> gotoHeplCenterScreen() async {
-    return await _pushMaterialPageRoute(HeplCenterScreen());
+    return await _pushMaterialPageRoute(const HeplCenterScreen());
   }
 
   Future<dynamic> gotoChangepasswordScreen() async {
-    return await _pushMaterialPageRoute(ChangepasswordScreen());
+    return await _pushMaterialPageRoute(const ChangepasswordScreen());
   }
 
   Future<dynamic> gotoInviteFriend() async {
-    return await _pushMaterialPageRoute(InviteFriend());
+    return await _pushMaterialPageRoute(const InviteFriend());
   }
 
   Future<dynamic> gotoCurrencyScreen() async {
-    return await _pushMaterialPageRoute(CurrencyScreen(),
+    return await _pushMaterialPageRoute(const CurrencyScreen(),
         fullscreenDialog: true);
   }
 
   Future<dynamic> gotoCountryScreen() async {
-    return await _pushMaterialPageRoute(CountryScreen(),
+    return await _pushMaterialPageRoute(const CountryScreen(),
         fullscreenDialog: true);
   }
 
   Future<dynamic> gotoHowDoScreen() async {
-    return await _pushMaterialPageRoute(HowDoScreen());
+    return await _pushMaterialPageRoute(const HowDoScreen());
   }
+
+//   void gotoHotelDetailesPage(String hotelname) async {
+//     await _pushMaterialPageRoute(HotelDetailes(hotelName: hotelname));
+//   }
 }

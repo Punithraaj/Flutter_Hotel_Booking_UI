@@ -1,156 +1,148 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/models/setting_list_data.dart';
-import 'package:flutter_hotel_booking_ui/providers/theme_provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:flutter_hotel_booking_ui/constants/helper.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
+import 'package:flutter_hotel_booking_ui/logic/controllers/theme_provider.dart';
+import 'package:flutter_hotel_booking_ui/models/enum.dart';
 import 'package:flutter_hotel_booking_ui/routes/route_names.dart';
-import 'package:flutter_hotel_booking_ui/utils/enum.dart';
-import 'package:flutter_hotel_booking_ui/utils/helper.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_appbar_view.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:flutter_hotel_booking_ui/widgets/remove_focuse.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
+import '../../models/setting_list_data.dart';
 
 class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
+
   @override
-  _SettingsScreenState createState() => _SettingsScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> with Helper {
-  List<SettingsListData> settingsList = SettingsListData.settingsList;
   var country = 'Australia';
   var currency = '\$ AUD';
   int selectedradioTile = 0;
-  List<String> data = ["English", "French", "Arabic", "Japanese"];
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, provider, child) {
-        return Scaffold(
-          body: RemoveFocuse(
-            onClick: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                CommonAppbarView(
-                  iconData: Icons.arrow_back,
-                  onBackClick: () {
-                    Navigator.pop(context);
-                  },
-                  titleText: AppLocalizations(context).of("setting_text"),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(top: 16),
-                    itemCount: settingsList.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          if (index == 1) {
-                            // MyApp.restartApp(context);
-                          } else if (index == 6) {
-                            NavigationServices(context)
-                                .gotoCurrencyScreen()
-                                .then((value) {
-                              if (value is String && value != "")
-                                setState(() {
-                                  currency = value;
-                                });
+    List<SettingsListData> settingsList = SettingsListData.settingsList;
+
+    return Scaffold(
+      body: RemoveFocuse(
+        onClick: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            CommonAppbarView(
+              iconData: Icons.arrow_back,
+              onBackClick: () {
+                Navigator.pop(context);
+              },
+              titleText: Loc.alized.setting_text,
+            ),
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.only(top: 16),
+                itemCount: settingsList.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      if (index == 1) {
+                        // MyApp.restartApp(context);
+                      } else if (index == 6) {
+                        NavigationServices(context)
+                            .gotoCurrencyScreen()
+                            .then((value) {
+                          if (value is String && value != "") {
+                            setState(() {
+                              currency = value;
                             });
-                          } else if (index == 5) {
-                            NavigationServices(context)
-                                .gotoCountryScreen()
-                                .then((value) {
-                              if (value is String && value != "") {
-                                setState(() {
-                                  country = value;
-                                });
-                              }
-                            });
-                          } else if (index == 2) {
-                            _getFontPopUI();
-                          } else if (index == 3) {
-                            _getColorPopUI();
-                          } else if (index == 4) {
-                            _getLanguageUI();
-                          } else if (index == 10) {
-                            _gotoSplashScreen();
                           }
-                        },
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 8, right: 16),
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Text(
-                                        AppLocalizations(context)
-                                            .of(settingsList[index].titleTxt),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16),
-                                      ),
-                                    ),
+                        });
+                      } else if (index == 5) {
+                        NavigationServices(context)
+                            .gotoCountryScreen()
+                            .then((value) {
+                          if (value is String && value != "") {
+                            setState(() {
+                              country = value;
+                            });
+                          }
+                        });
+                      } else if (index == 2) {
+                        _getFontPopUI();
+                      } else if (index == 3) {
+                        _getColorPopUI();
+                      } else if (index == 4) {
+                        _getLanguageUI();
+                      } else if (index == 10) {
+                        _gotoSplashScreen();
+                      }
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 16),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Text(
+                                    settingsList[index].titleTxt,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16),
                                   ),
-                                  index == 5
+                                ),
+                              ),
+                              index == 5
+                                  ? Padding(
+                                      padding: const EdgeInsets.all(16),
+                                      child: getTextUi(country))
+                                  : index == 6
                                       ? Padding(
                                           padding: const EdgeInsets.all(16),
-                                          child: getTextUi(country))
-                                      : index == 6
-                                          ? Padding(
+                                          child: getTextUi(currency),
+                                          //   child:
+                                        )
+                                      : index == 1
+                                          ? _themeUI()
+                                          : Padding(
                                               padding: const EdgeInsets.all(16),
-                                              child: getTextUi(currency),
-                                              //   child:
+                                              child: Icon(
+                                                  settingsList[index].iconData,
+                                                  color: AppTheme
+                                                      .secondaryTextColor),
                                             )
-                                          : index == 1
-                                              ? _themeUI()
-                                              : Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(16),
-                                                  child: Container(
-                                                    child: Icon(
-                                                        settingsList[index]
-                                                            .iconData,
-                                                        color: AppTheme
-                                                            .secondaryTextColor),
-                                                  ),
-                                                )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 16, right: 16),
-                              child: Divider(
-                                height: 1,
-                              ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
-                      );
-                    },
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      },
+                        const Padding(
+                          padding: EdgeInsets.only(left: 16, right: 16),
+                          child: Divider(
+                            height: 1,
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 
   Widget _themeUI() {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final themeProvider = Get.find<ThemeController>();
     return Padding(
       padding: const EdgeInsets.only(right: 4.0),
       child: PopupMenuButton<ThemeModeType>(
@@ -167,23 +159,23 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
         },
         icon: Icon(
             themeProvider.themeModeType == ThemeModeType.system
-                ? FontAwesomeIcons.adjust
+                ? FontAwesomeIcons.circleHalfStroke
                 : themeProvider.themeModeType == ThemeModeType.light
                     ? FontAwesomeIcons.cloudSun
                     : FontAwesomeIcons.cloudMoon,
             color: AppTheme.secondaryTextColor),
-        offset: Offset(10, 18),
+        offset: const Offset(10, 18),
         itemBuilder: (context) => [
           ...ThemeModeType.values.toList().map(
                 (e) => PopupMenuItem(
                   value: e,
                   child: _getSelectedUI(
                     e == ThemeModeType.system
-                        ? FontAwesomeIcons.adjust
+                        ? FontAwesomeIcons.circleHalfStroke
                         : e == ThemeModeType.light
                             ? FontAwesomeIcons.cloudSun
                             : FontAwesomeIcons.cloudMoon,
-                    AppLocalizations(context).of(e.toString().split(".")[1]),
+                    e.toString().split(".")[1],
                     e == themeProvider.themeModeType,
                   ),
                 ),
@@ -194,13 +186,11 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
   }
 
   Widget getTextUi(String text) {
-    return Container(
-      child: Text(
-        text,
-        style: TextStyles(context).getDescriptionStyle().copyWith(
-              fontSize: 16,
-            ),
-      ),
+    return Text(
+      text,
+      style: TextStyles(context).getDescriptionStyle().copyWith(
+            fontSize: 16,
+          ),
     );
   }
 
@@ -240,7 +230,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
               splashColor: Colors.transparent,
               borderRadius: BorderRadius.circular(8.0),
               onTap: () {
-                context.read<ThemeProvider>().updateFontType(element);
+                Get.find<ThemeController>().updateFontType(element);
                 Navigator.pop(context);
               },
               child: Padding(
@@ -249,25 +239,25 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      AppLocalizations(context).of("Hello"),
+                      "Hello",
                       style: AppTheme.getTextStyle(
                         element,
                         TextStyles(context).getRegularStyle().copyWith(
-                            color: context.read<ThemeProvider>().fontType ==
-                                    element
-                                ? AppTheme.primaryColor
-                                : AppTheme.fontcolor),
+                            color:
+                                Get.find<ThemeController>().fontType == element
+                                    ? AppTheme.primaryColor
+                                    : AppTheme.fontcolor),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          top: FontFamilyType.WorkSans == element ? 3 : 0),
+                          top: FontFamilyType.workSans == element ? 3 : 0),
                       child: Text(
                         element.toString().split('.')[1],
                         style: AppTheme.getTextStyle(
                           element,
                           TextStyles(context).getRegularStyle().copyWith(
-                              color: context.read<ThemeProvider>().fontType ==
+                              color: Get.find<ThemeController>().fontType ==
                                       element
                                   ? AppTheme.primaryColor
                                   : AppTheme.fontcolor),
@@ -284,65 +274,64 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
     );
 
     return showDialog(
-        barrierDismissible: true,
-        context: context,
-        builder: (BuildContext context) => Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(48.0),
-                  child: CommonCard(
-                    color: AppTheme.backgroundColor,
-                    radius: 8,
+      barrierDismissible: true,
+      context: context,
+      builder: (BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(48.0),
+            child: CommonCard(
+              color: AppTheme.backgroundColor,
+              radius: 8,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      Loc.alized.selected_fonts,
+                      style: TextStyles(context)
+                          .getBoldStyle()
+                          .copyWith(fontSize: 22),
+                    ),
+                  ),
+                  const Divider(
+                    height: 1,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Text(
-                            AppLocalizations(context).of("selected_fonts"),
-                            style: TextStyles(context)
-                                .getBoldStyle()
-                                .copyWith(fontSize: 22),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            fontArray[0],
+                            fontArray[1],
+                            fontArray[2],
+                          ],
                         ),
-                        Divider(
-                          height: 1,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  fontArray[0],
-                                  fontArray[1],
-                                  fontArray[2],
-                                ],
-                              ),
-                              SizedBox(height: 8),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  fontArray[3],
-                                  fontArray[4],
-                                  fontArray[5],
-                                ],
-                              ),
-                            ],
-                          ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            fontArray[3],
+                            fontArray[4],
+                            fontArray[5],
+                          ],
                         ),
                       ],
                     ),
                   ),
-                ),
-              ],
-            ));
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   _getColorPopUI() {
@@ -355,7 +344,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
             splashColor: Colors.transparent,
             borderRadius: BorderRadius.circular(8.0),
             onTap: () {
-              context.read<ThemeProvider>().updateColorType(element);
+              Get.find<ThemeController>().updateColorType(element);
               Navigator.pop(context);
             },
             child: Column(
@@ -370,10 +359,10 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: context.read<ThemeProvider>().colorType ==
-                                    element
-                                ? AppTheme.getColor(element)
-                                : Colors.transparent)),
+                            color:
+                                Get.find<ThemeController>().colorType == element
+                                    ? AppTheme.getColor(element)
+                                    : Colors.transparent)),
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Container(
@@ -409,13 +398,13 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      AppLocalizations(context).of("Selected color"),
+                      Loc.alized.selected_color,
                       style: TextStyles(context)
                           .getBoldStyle()
                           .copyWith(fontSize: 22),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 16,
                   ),
                   Padding(
@@ -441,36 +430,43 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
 
   _getLanguageUI() {
     final List<Widget> languageArray = [];
-    final list = LanguageType.values.toList();
+    final list = [
+      const Locale('en'), // English
+      const Locale('fr'), // French
+      const Locale('ja'), // Japanises
+      const Locale('ar'), // Arebic
+    ];
+    List<String> languageTexts = ["English", "French", "Japanese", "Arabic"];
 
-    list.forEach(
-      (element) {
-        languageArray.add(
-          InkWell(
-            splashColor: Colors.transparent,
-            onTap: () {
-              context.read<ThemeProvider>().updateLanguage(element);
-              Navigator.pop(context);
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0, bottom: 16, top: 16, right: 16.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  context.read<ThemeProvider>().languageType == element
-                      ? Icon(Icons.radio_button_checked)
-                      : Icon(Icons.radio_button_off),
-                  Padding(
-                      padding: const EdgeInsets.only(left: 16.0, right: 16),
-                      child: Text(data[element.index]))
-                ],
-              ),
+    for (var i = 0; i < list.length; i++) {
+      final element = list[i];
+      languageArray.add(
+        InkWell(
+          splashColor: Colors.transparent,
+          onTap: () {
+            Get.find<Loc>().localeLanguage(element);
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, bottom: 16, top: 16, right: 16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Get.find<Loc>().locale == element
+                    ? const Icon(Icons.radio_button_checked)
+                    : const Icon(Icons.radio_button_off),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0, right: 16),
+                  child: Text(languageTexts[i]),
+                )
+              ],
             ),
           ),
-        );
-      },
-    );
+        ),
+      );
+    }
+
     return showDialog(
       context: context,
       barrierDismissible: true,
@@ -489,17 +485,17 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0, bottom: 8),
                     child: Text(
-                      AppLocalizations(context).of("Selected language"),
+                      Loc.alized.selected_language,
                       style: TextStyles(context)
                           .getBoldStyle()
                           .copyWith(fontSize: 22),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 16,
                   ),
                   for (var item in languageArray) item,
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],
@@ -520,6 +516,7 @@ class _SettingsScreenState extends State<SettingsScreen> with Helper {
       isYesOrNoPopup: true,
     );
     if (isOk) {
+      // ignore: use_build_context_synchronously
       NavigationServices(context).gotoSplashScreen();
     }
   }

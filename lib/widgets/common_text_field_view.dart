@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
 
 class CommonTextFieldView extends StatelessWidget {
   final String? titleText;
@@ -63,7 +63,7 @@ class CommonTextFieldView extends StatelessWidget {
                     onEditingComplete: () {
                       FocusScope.of(context).nextFocus();
                     },
-                    decoration: new InputDecoration(
+                    decoration: InputDecoration(
                       errorText: null,
                       border: InputBorder.none,
                       hintText: hintText,

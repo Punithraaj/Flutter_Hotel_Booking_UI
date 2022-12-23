@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/modules/hotel_booking/components/filter_bar_UI.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
+import 'package:flutter_hotel_booking_ui/modules/hotel_booking/components/filter_bar_ui.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_booking/components/map_and_list_view.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_booking/components/time_date_view.dart';
 import 'package:flutter_hotel_booking_ui/modules/myTrips/hotel_list_view.dart';
-import 'package:flutter_hotel_booking_ui/providers/theme_provider.dart';
 import 'package:flutter_hotel_booking_ui/routes/route_names.dart';
-import 'package:flutter_hotel_booking_ui/utils/enum.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_search_bar.dart';
 import 'package:flutter_hotel_booking_ui/widgets/remove_focuse.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../models/hotel_list_data.dart';
-import 'package:provider/provider.dart';
 
 class HotelHomeScreen extends StatefulWidget {
+  const HotelHomeScreen({Key? key}) : super(key: key);
+
   @override
-  _HotelHomeScreenState createState() => _HotelHomeScreenState();
+  State<HotelHomeScreen> createState() => _HotelHomeScreenState();
 }
 
 class _HotelHomeScreenState extends State<HotelHomeScreen>
@@ -26,11 +26,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   late AnimationController animationController;
   late AnimationController _animationController;
   var hotelList = HotelListData.hotelList;
-  ScrollController scrollController = new ScrollController();
+  ScrollController scrollController = ScrollController();
   int room = 1;
   int ad = 2;
   DateTime startDate = DateTime.now();
-  DateTime endDate = DateTime.now().add(Duration(days: 5));
+  DateTime endDate = DateTime.now().add(const Duration(days: 5));
   bool _isShowMap = false;
 
   final searchBarHieght = 158.0;
@@ -38,9 +38,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   @override
   void initState() {
     animationController = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
-    _animationController =
-        AnimationController(duration: Duration(milliseconds: 0), vsync: this);
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    _animationController = AnimationController(
+        duration: const Duration(milliseconds: 0), vsync: this);
     scrollController.addListener(() {
       if (scrollController.offset <= 0) {
         _animationController.animateTo(0.0);
@@ -92,7 +92,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                               child: ListView.builder(
                                 controller: scrollController,
                                 itemCount: hotelList.length,
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                   top: 8 + 158 + 52.0,
                                 ),
                                 scrollDirection: Axis.vertical,
@@ -138,12 +138,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                                             //hotel search view
                                             _getSearchBarUI(),
                                             // time date and number of rooms view
-                                            TimeDateView(),
+                                            const TimeDateView(),
                                           ],
                                         ),
                                       ),
                                       //hotel price & facilitate  & distance
-                                      FilterBarUI(),
+                                      const FilterBarUI(),
                                     ],
                                   ),
                                 );
@@ -172,7 +172,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
               child: CommonCard(
                 color: AppTheme.backgroundColor,
                 radius: 36,
-                child: CommonSearchBar(
+                child: const CommonSearchBar(
                   enabled: true,
                   ishsow: false,
                   text: "London...",
@@ -191,7 +191,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Icon(FontAwesomeIcons.search,
+                  child: Icon(FontAwesomeIcons.magnifyingGlass,
                       size: 20, color: AppTheme.backgroundColor),
                 ),
               ),
@@ -211,23 +211,22 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Container(
-            alignment:
-                context.read<ThemeProvider>().languageType == LanguageType.ar
-                    ? Alignment.centerRight
-                    : Alignment.centerLeft,
+            alignment: Get.find<Loc>().isRTL
+                ? Alignment.centerRight
+                : Alignment.centerLeft,
             width: AppBar().preferredSize.height + 40,
             height: AppBar().preferredSize.height,
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(32.0),
                 ),
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Icon(Icons.arrow_back),
                 ),
               ),
@@ -236,12 +235,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
           Expanded(
             child: Center(
               child: Text(
-                AppLocalizations(context).of("explore"),
+                Loc.alized.explore,
                 style: TextStyles(context).getTitleStyle(),
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: AppBar().preferredSize.height + 40,
             height: AppBar().preferredSize.height,
             child: Row(
@@ -251,12 +250,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                 Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(32.0),
                     ),
                     onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.favorite_border),
                     ),
                   ),
@@ -264,7 +263,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                 Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(32.0),
                     ),
                     onTap: () {
@@ -276,7 +275,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       padding: const EdgeInsets.all(8.0),
                       child: Icon(_isShowMap
                           ? Icons.sort
-                          : FontAwesomeIcons.mapMarkedAlt),
+                          : FontAwesomeIcons.mapLocationDot),
                     ),
                   ),
                 ),

@@ -8,7 +8,7 @@ class RangeSliderView extends StatefulWidget {
       {Key? key, required this.values, required this.onChnageRangeValues})
       : super(key: key);
   @override
-  _RangeSliderViewState createState() => _RangeSliderViewState();
+  State<RangeSliderView> createState() => _RangeSliderViewState();
 }
 
 class _RangeSliderViewState extends State<RangeSliderView> {
@@ -22,74 +22,72 @@ class _RangeSliderViewState extends State<RangeSliderView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: _values.start.round(),
-                    child: SizedBox(),
-                  ),
-                  Container(
-                    width: 54,
-                    child: Text(
-                      "\$${_values.start.round()}",
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1000 - _values.start.round(),
-                    child: SizedBox(),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: _values.end.round(),
-                    child: SizedBox(),
-                  ),
-                  Container(
-                    width: 54,
-                    child: Text(
-                      "\$${_values.end.round()}",
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1000 - _values.end.round(),
-                    child: SizedBox(),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SliderTheme(
-            data: SliderThemeData(
-                //   rangeThumbShape: CustomRangeThumbShape(),
+    return Column(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: _values.start.round(),
+                  child: const SizedBox(),
                 ),
-            child: RangeSlider(
-              values: _values,
-              min: 10.0,
-              max: 1000.0,
-              activeColor: Theme.of(context).primaryColor,
-              inactiveColor: Colors.grey.withOpacity(0.4),
-              divisions: 1000,
-              onChanged: (RangeValues values) {
-                try {
-                  setState(() {
-                    _values = values;
-                  });
-                  widget.onChnageRangeValues(_values);
-                } catch (e) {}
-              },
+                SizedBox(
+                  width: 54,
+                  child: Text(
+                    "\$${_values.start.round()}",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Expanded(
+                  flex: 1000 - _values.start.round(),
+                  child: const SizedBox(),
+                ),
+              ],
             ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: _values.end.round(),
+                  child: const SizedBox(),
+                ),
+                SizedBox(
+                  width: 54,
+                  child: Text(
+                    "\$${_values.end.round()}",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Expanded(
+                  flex: 1000 - _values.end.round(),
+                  child: const SizedBox(),
+                ),
+              ],
+            ),
+          ],
+        ),
+        SliderTheme(
+          data: const SliderThemeData(
+              //   rangeThumbShape: CustomRangeThumbShape(),
+              ),
+          child: RangeSlider(
+            values: _values,
+            min: 10.0,
+            max: 1000.0,
+            activeColor: Theme.of(context).primaryColor,
+            inactiveColor: Colors.grey.withOpacity(0.4),
+            divisions: 1000,
+            onChanged: (RangeValues values) {
+              try {
+                setState(() {
+                  _values = values;
+                });
+                widget.onChnageRangeValues(_values);
+              } catch (_) {}
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

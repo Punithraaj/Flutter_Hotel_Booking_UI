@@ -13,7 +13,7 @@ class TapEffect extends StatefulWidget {
   final Widget child;
 
   @override
-  _TapEffectState createState() => _TapEffectState();
+  State<TapEffect> createState() => _TapEffectState();
 }
 
 class _TapEffectState extends State<TapEffect>

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
-import 'package:flutter_hotel_booking_ui/models/hotel_list_data.dart';
-import 'package:flutter_hotel_booking_ui/utils/helper.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
-import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_hotel_booking_ui/constants/helper.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
+import 'package:flutter_hotel_booking_ui/models/hotel_list_data.dart';
+import 'package:flutter_hotel_booking_ui/widgets/common_card.dart';
 
 class MapHotelListView extends StatelessWidget {
   final VoidCallback callback;
@@ -18,12 +18,12 @@ class MapHotelListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 24, right: 8, top: 8, bottom: 16),
+      padding: const EdgeInsets.only(left: 24, right: 8, top: 8, bottom: 16),
       child: CommonCard(
         color: AppTheme.scaffoldBackgroundColor,
         radius: 16,
         child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
           child: AspectRatio(
             aspectRatio: 2.7,
             child: Stack(
@@ -39,7 +39,7 @@ class MapHotelListView extends StatelessWidget {
                     ),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,56 +62,51 @@ class MapHotelListView extends StatelessWidget {
                                     fontSize: 14,
                                   ),
                             ),
-                            Expanded(
+                            const Expanded(
                               child: SizedBox(),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
-                                Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: <Widget>[
-                                          Icon(
-                                            FontAwesomeIcons.mapMarkerAlt,
-                                            size: 12,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
-                                          Text(
-                                            " ${hotelData.dist.toStringAsFixed(1)}",
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyles(context)
-                                                .getDescriptionStyle()
-                                                .copyWith(
-                                                  fontSize: 14,
-                                                ),
-                                          ),
-                                          Text(
-                                            AppLocalizations(context)
-                                                .of("km_to_city"),
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyles(context)
-                                                .getDescriptionStyle()
-                                                .copyWith(
-                                                  fontSize: 14,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 4),
-                                        child: Helper.ratingStar(),
-                                      ),
-                                    ],
-                                  ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          FontAwesomeIcons.locationDot,
+                                          size: 12,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        Text(
+                                          " ${hotelData.dist.toStringAsFixed(1)}",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyles(context)
+                                              .getDescriptionStyle()
+                                              .copyWith(
+                                                fontSize: 14,
+                                              ),
+                                        ),
+                                        Text(
+                                          Loc.alized.km_to_city,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyles(context)
+                                              .getDescriptionStyle()
+                                              .copyWith(
+                                                fontSize: 14,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 4),
+                                      child: Helper.ratingStar(),
+                                    ),
+                                  ],
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 8),
@@ -129,8 +124,7 @@ class MapHotelListView extends StatelessWidget {
                                             ),
                                       ),
                                       Text(
-                                        AppLocalizations(context)
-                                            .of("per_night"),
+                                        Loc.alized.per_night,
                                         style: TextStyles(context)
                                             .getDescriptionStyle()
                                             .copyWith(

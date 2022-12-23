@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
 import 'package:flutter_hotel_booking_ui/modules/hotel_detailes/room_book_view.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
 import '../../models/hotel_list_data.dart';
 
 class RoomBookingScreen extends StatefulWidget {
@@ -9,7 +9,7 @@ class RoomBookingScreen extends StatefulWidget {
   const RoomBookingScreen({Key? key, required this.hotelName})
       : super(key: key);
   @override
-  _RoomBookingScreenState createState() => _RoomBookingScreenState();
+  State<RoomBookingScreen> createState() => _RoomBookingScreenState();
 }
 
 class _RoomBookingScreenState extends State<RoomBookingScreen>
@@ -20,7 +20,7 @@ class _RoomBookingScreenState extends State<RoomBookingScreen>
   @override
   void initState() {
     animationController = AnimationController(
-        duration: Duration(milliseconds: 2000), vsync: this);
+        duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
 
@@ -38,7 +38,7 @@ class _RoomBookingScreenState extends State<RoomBookingScreen>
           getAppBarUI(),
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0.0),
               itemCount: romeList.length,
               itemBuilder: (context, index) {
                 var count = romeList.length > 10 ? 10 : romeList.length;
@@ -63,55 +63,77 @@ class _RoomBookingScreenState extends State<RoomBookingScreen>
   }
 
   Widget getAppBarUI() {
+    // return Container(
+    //   decoration: BoxDecoration(
+    //     color: AppTheme.scaffoldBackgroundColor,
+    //     boxShadow: <BoxShadow>[
+    //       BoxShadow(
+    //           color: Theme.of(context).dividerColor,
+    //           offset: Offset(0, 2),
+    //           blurRadius: 8.0),
+    //     ],
+    //   ),
     return Padding(
       padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top,
-          left: 16,
-          right: 16,
-          bottom: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.all(
-                Radius.circular(32.0),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.arrow_back),
-              ),
-            ),
-          ),
-          //   ),
-          Expanded(
-            child: Center(
-              child: Text(
-                widget.hotelName,
-                style: TextStyles(context).getTitleStyle(),
-                overflow: TextOverflow.ellipsis,
+        top: MediaQuery.of(context).padding.top,
+        left: 16,
+        right: 16,
+      ),
+      child: SizedBox(
+        height: AppBar().preferredSize.height,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            //   Container(
+            // alignment: Alignment.centerLeft,
+            // width: AppBar().preferredSize.height,
+            // height: AppBar().preferredSize.height,
+            // child:
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(32.0),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.arrow_back),
+                ),
               ),
             ),
-          ),
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.all(
-                Radius.circular(32.0),
-              ),
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.favorite_border),
+            //   ),
+            Expanded(
+              child: Center(
+                child: Text(
+                  widget.hotelName,
+                  style: TextStyles(context).getTitleStyle(),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-          ),
-          //   )
-        ],
+            //   Container(
+            //     width: AppBar().preferredSize.height,
+            //     height: AppBar().preferredSize.height,
+            //     child:
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(32.0),
+                ),
+                onTap: () {},
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.favorite_border),
+                ),
+              ),
+            ),
+            //   )
+          ],
+        ),
       ),
     );
     // );

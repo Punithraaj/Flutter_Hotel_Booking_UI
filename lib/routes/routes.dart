@@ -1,7 +1,7 @@
 class RoutesName {
-  static const String Splash = "/";
-  static const String IntroductionScreen = '/introductionScreen';
-  static const String Login = '/login';
-  static const String Home = '/home';
-  static const String TabScreen = "/bottomTab/bottomTabScreen";
+  static const String splash = "/";
+  static const String introductionScreen = '/introductionScreen';
+  static const String login = '/login';
+  static const String home = '/home';
+  static const String tabScreen = "/bottomTab/bottomTabScreen";
 }

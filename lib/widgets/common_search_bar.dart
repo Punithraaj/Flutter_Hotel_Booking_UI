@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
-import 'package:flutter_hotel_booking_ui/utils/themes.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/constants/themes.dart';
 
 class CommonSearchBar extends StatelessWidget {
   final String? text;
-  final TextEditingController? textEditingController;
   final bool enabled, ishsow;
   final double height;
   final IconData? iconData;
@@ -15,14 +14,13 @@ class CommonSearchBar extends StatelessWidget {
       this.enabled = false,
       this.height = 48,
       this.iconData,
-      this.ishsow = true,
-      this.textEditingController})
+      this.ishsow = true})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-      child: Container(
+      child: SizedBox(
         height: height,
         child: Center(
           child: Row(
@@ -34,29 +32,28 @@ class CommonSearchBar extends StatelessWidget {
                       size: 18,
                       color: Theme.of(context).primaryColor,
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
               ishsow == true
-                  ? SizedBox(
+                  ? const SizedBox(
                       width: 8,
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
               Expanded(
                 child: TextField(
-                  controller: textEditingController,
                   maxLines: 1,
                   enabled: enabled,
                   onChanged: (String txt) {},
                   cursorColor: Theme.of(context).primaryColor,
-                  decoration: new InputDecoration(
-                      contentPadding: EdgeInsets.all(0),
-                      errorText: null,
-                      border: InputBorder.none,
-                      hintText: text,
-                      hintStyle: TextStyles(context)
-                          .getDescriptionStyle()
-                          .copyWith(
-                              color: AppTheme.secondaryTextColor,
-                              fontSize: 18)),
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(0),
+                    errorText: null,
+                    border: InputBorder.none,
+                    hintText: text,
+                    hintStyle: TextStyles(context)
+                        .getDescriptionStyle()
+                        .copyWith(
+                            color: AppTheme.secondaryTextColor, fontSize: 18),
+                  ),
                 ),
               ),
             ],

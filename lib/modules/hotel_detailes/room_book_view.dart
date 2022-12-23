@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hotel_booking_ui/language/appLocalizations.dart';
+import 'package:flutter_hotel_booking_ui/constants/helper.dart';
+import 'package:flutter_hotel_booking_ui/constants/text_styles.dart';
+import 'package:flutter_hotel_booking_ui/language/app_localizations.dart';
 import 'package:flutter_hotel_booking_ui/models/hotel_list_data.dart';
-import 'package:flutter_hotel_booking_ui/utils/helper.dart';
-import 'package:flutter_hotel_booking_ui/utils/text_styles.dart';
 import 'package:flutter_hotel_booking_ui/widgets/common_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -19,7 +19,7 @@ class RoomeBookView extends StatefulWidget {
       : super(key: key);
 
   @override
-  _RoomeBookViewState createState() => _RoomeBookViewState();
+  State<RoomeBookView> createState() => _RoomeBookViewState();
 }
 
 class _RoomeBookViewState extends State<RoomeBookView> {
@@ -33,8 +33,8 @@ class _RoomeBookViewState extends State<RoomeBookView> {
       builder: (BuildContext context, Widget? child) {
         return FadeTransition(
           opacity: widget.animation,
-          child: new Transform(
-            transform: new Matrix4.translationValues(
+          child: Transform(
+            transform: Matrix4.translationValues(
                 0.0, 40 * (1.0 - widget.animation.value), 0.0),
             child: Column(
               children: <Widget>[
@@ -89,7 +89,7 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                                 .copyWith(fontSize: 24),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          Expanded(child: SizedBox()),
+                          const Expanded(child: SizedBox()),
                           SizedBox(
                             height: 38,
                             child: CommonButton(
@@ -97,7 +97,7 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                                 padding: const EdgeInsets.only(
                                     left: 16.0, right: 16.0, top: 4, bottom: 4),
                                 child: Text(
-                                  AppLocalizations(context).of("book_now"),
+                                  Loc.alized.book_now,
                                   textAlign: TextAlign.center,
                                   style: TextStyles(context).getRegularStyle(),
                                 ),
@@ -119,7 +119,7 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 0),
                             child: Text(
-                              AppLocalizations(context).of("per_night"),
+                              Loc.alized.per_night,
                               style: TextStyles(context)
                                   .getRegularStyle()
                                   .copyWith(fontSize: 14),
@@ -140,7 +140,7 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                           ),
                           InkWell(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(4.0)),
+                                const BorderRadius.all(Radius.circular(4.0)),
                             onTap: () {},
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8, right: 4),
@@ -150,12 +150,11 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
-                                    AppLocalizations(context)
-                                        .of("more_details"),
+                                    Loc.alized.more_details,
                                     style: TextStyles(context).getBoldStyle(),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 2),
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 2),
                                     child: Icon(
                                       Icons.keyboard_arrow_down,
                                       // color: Theme.of(context).backgroundColor,
@@ -171,7 +170,7 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   height: 1,
                 )
               ],
